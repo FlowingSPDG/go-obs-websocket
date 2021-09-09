@@ -1,7 +1,7 @@
 # obsws
 
-[![Build Status](https://travis-ci.com/christopher-dG/go-obs-websocket.svg?branch=master)](https://travis-ci.com/christopher-dG/go-obs-websocket)
-[![GoDoc](https://godoc.org/github.com/christopher-dG/go-obs-websocket?status.svg)](https://godoc.org/github.com/christopher-dG/go-obs-websocket)
+[![Build Status](https://travis-ci.com/FlowingSPDG/go-obs-websocket.svg?branch=master)](https://travis-ci.com/FlowingSPDG/go-obs-websocket)
+[![GoDoc](https://godoc.org/github.com/FlowingSPDG/go-obs-websocket?status.svg)](https://godoc.org/github.com/FlowingSPDG/go-obs-websocket)
 
 `obsws` provides client functionality for [`obs-websocket`](https://github.com/Palakis/obs-websocket).
 Currently, the target version is `4.4`.
@@ -9,7 +9,7 @@ Currently, the target version is `4.4`.
 ## Installation
 
 ```sh
-go get github.com/christopher-dG/go-obs-websocket
+go get github.com/FlowingSPDG/go-obs-websocket
 ```
 
 ## Usage
@@ -21,7 +21,7 @@ import (
 	"log"
 	"time"
 
-	"github.com/christopher-dG/go-obs-websocket"
+	"github.com/FlowingSPDG/go-obs-websocket"
 )
 
 func main() {
