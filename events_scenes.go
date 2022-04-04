@@ -11,11 +11,11 @@ package obsws
 type SwitchScenesEvent struct {
 	// The new scene.
 	// Required: Yes.
-	SceneName string `json:"scene-name"`
+	SceneName string `json:"scene-name,omitempty"`
 	// List of scene items in the new scene.
 	// Same specification as [`GetCurrentScene`](#getcurrentscene).
 	// Required: Yes.
-	Sources []*SceneItem `json:"sources"`
+	Sources []*SceneItem `json:"sources,omitempty"`
 	_event  `json:",squash"`
 }
 
@@ -29,7 +29,7 @@ type SwitchScenesEvent struct {
 type ScenesChangedEvent struct {
 	// Scenes list.
 	// Required: Yes.
-	Scenes []*Scene `json:"scenes"`
+	Scenes []*Scene `json:"scenes,omitempty"`
 	_event `json:",squash"`
 }
 
@@ -41,7 +41,7 @@ type ScenesChangedEvent struct {
 type SceneCollectionChangedEvent struct {
 	// Name of the new current scene collection.
 	// Required: Yes.
-	SceneCollection string `json:"sceneCollection"`
+	SceneCollection string `json:"sceneCollection,omitempty"`
 	_event          `json:",squash"`
 }
 
@@ -53,9 +53,9 @@ type SceneCollectionChangedEvent struct {
 type SceneCollectionListChangedEvent struct {
 	// Scene collections list.
 	// Required: Yes.
-	SceneCollections []map[string]interface{} `json:"sceneCollections"`
+	SceneCollections []map[string]interface{} `json:"sceneCollections,omitempty"`
 	// Scene collection name.
 	// Required: Yes.
-	SceneCollectionsName string `json:"sceneCollections.*.name"`
+	SceneCollectionsName string `json:"sceneCollections.*.name,omitempty"`
 	_event               `json:",squash"`
 }

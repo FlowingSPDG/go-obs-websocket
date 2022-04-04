@@ -11,40 +11,40 @@ package obsws
 type HeartbeatEvent struct {
 	// Toggles between every JSON message as an "I am alive" indicator.
 	// Required: Yes.
-	Pulse bool `json:"pulse"`
+	Pulse bool `json:"pulse,omitempty"`
 	// Current active profile.
 	// Required: No.
-	CurrentProfile string `json:"current-profile"`
+	CurrentProfile string `json:"current-profile,omitempty"`
 	// Current active scene.
 	// Required: No.
-	CurrentScene string `json:"current-scene"`
+	CurrentScene string `json:"current-scene,omitempty"`
 	// Current streaming state.
 	// Required: No.
-	Streaming bool `json:"streaming"`
+	Streaming bool `json:"streaming,omitempty"`
 	// Total time (in seconds) since the stream started.
 	// Required: No.
-	TotalStreamTime int `json:"total-stream-time"`
+	TotalStreamTime int `json:"total-stream-time,omitempty"`
 	// Total bytes sent since the stream started.
 	// Required: No.
-	TotalStreamBytes int `json:"total-stream-bytes"`
+	TotalStreamBytes int `json:"total-stream-bytes,omitempty"`
 	// Total frames streamed since the stream started.
 	// Required: No.
-	TotalStreamFrames int `json:"total-stream-frames"`
+	TotalStreamFrames int `json:"total-stream-frames,omitempty"`
 	// Current recording state.
 	// Required: No.
-	Recording bool `json:"recording"`
+	Recording bool `json:"recording,omitempty"`
 	// Total time (in seconds) since recording started.
 	// Required: No.
-	TotalRecordTime int `json:"total-record-time"`
+	TotalRecordTime int `json:"total-record-time,omitempty"`
 	// Total bytes recorded since the recording started.
 	// Required: No.
-	TotalRecordBytes int `json:"total-record-bytes"`
+	TotalRecordBytes int `json:"total-record-bytes,omitempty"`
 	// Total frames recorded since the recording started.
 	// Required: No.
-	TotalRecordFrames int `json:"total-record-frames"`
+	TotalRecordFrames int `json:"total-record-frames,omitempty"`
 	// OBS Stats.
 	// Required: Yes.
-	Stats  *OBSStats `json:"stats"`
+	Stats  *OBSStats `json:"stats,omitempty"`
 	_event `json:",squash"`
 }
 
@@ -56,9 +56,9 @@ type HeartbeatEvent struct {
 type BroadcastCustomMessageEvent struct {
 	// Identifier provided by the sender.
 	// Required: Yes.
-	Realm string `json:"realm"`
+	Realm string `json:"realm,omitempty"`
 	// User-defined data.
 	// Required: Yes.
-	Data   map[string]interface{} `json:"data"`
+	Data   map[string]interface{} `json:"data,omitempty"`
 	_event `json:",squash"`
 }

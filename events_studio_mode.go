@@ -11,11 +11,11 @@ package obsws
 type PreviewSceneChangedEvent struct {
 	// Name of the scene being previewed.
 	// Required: Yes.
-	SceneName string `json:"scene-name"`
+	SceneName string `json:"scene-name,omitempty"`
 	// List of sources composing the scene.
 	// Same specification as [`GetCurrentScene`](#getcurrentscene).
 	// Required: Yes.
-	Sources []*SceneItem `json:"sources"`
+	Sources []*SceneItem `json:"sources,omitempty"`
 	_event  `json:",squash"`
 }
 
@@ -27,6 +27,6 @@ type PreviewSceneChangedEvent struct {
 type StudioModeSwitchedEvent struct {
 	// The new enabled state of Studio Mode.
 	// Required: Yes.
-	NewState bool `json:"new-state"`
+	NewState bool `json:"new-state,omitempty"`
 	_event   `json:",squash"`
 }

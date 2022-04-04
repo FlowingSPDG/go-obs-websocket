@@ -94,7 +94,7 @@ func (r GetStudioModeStatusRequest) SendReceive(c Client) (GetStudioModeStatusRe
 type GetStudioModeStatusResponse struct {
 	// Indicates if Studio Mode is enabled.
 	// Required: Yes.
-	StudioMode bool `json:"studio-mode"`
+	StudioMode bool `json:"studio-mode,omitempty"`
 	_response  `json:",squash"`
 }
 
@@ -185,9 +185,9 @@ func (r GetPreviewSceneRequest) SendReceive(c Client) (GetPreviewSceneResponse, 
 type GetPreviewSceneResponse struct {
 	// The name of the active preview scene.
 	// Required: Yes.
-	Name string `json:"name"`
+	Name string `json:"name,omitempty"`
 	// Required: Yes.
-	Sources   []*SceneItem `json:"sources"`
+	Sources   []*SceneItem `json:"sources,omitempty"`
 	_response `json:",squash"`
 }
 
@@ -200,7 +200,7 @@ type GetPreviewSceneResponse struct {
 type SetPreviewSceneRequest struct {
 	// The name of the scene to preview.
 	// Required: Yes.
-	SceneName string `json:"scene-name"`
+	SceneName string `json:"scene-name,omitempty"`
 	_request  `json:",squash"`
 	response  chan SetPreviewSceneResponse
 }
@@ -293,13 +293,13 @@ type TransitionToProgramRequest struct {
 	// Change the active transition before switching scenes.
 	// Defaults to the active transition.
 	// Required: No.
-	WithTransition map[string]interface{} `json:"with-transition"`
+	WithTransition map[string]interface{} `json:"with-transition,omitempty"`
 	// Name of the transition.
 	// Required: Yes.
-	WithTransitionName string `json:"with-transition.name"`
+	WithTransitionName string `json:"with-transition.name,omitempty"`
 	// Transition duration (in milliseconds).
 	// Required: No.
-	WithTransitionDuration int `json:"with-transition.duration"`
+	WithTransitionDuration int `json:"with-transition.duration,omitempty"`
 	_request               `json:",squash"`
 	response               chan TransitionToProgramResponse
 }

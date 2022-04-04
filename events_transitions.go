@@ -11,7 +11,7 @@ package obsws
 type SwitchTransitionEvent struct {
 	// The name of the new active transition.
 	// Required: Yes.
-	TransitionName string `json:"transition-name"`
+	TransitionName string `json:"transition-name,omitempty"`
 	_event         `json:",squash"`
 }
 
@@ -24,10 +24,10 @@ type SwitchTransitionEvent struct {
 type TransitionListChangedEvent struct {
 	// Transitions list.
 	// Required: Yes.
-	Transitions []map[string]interface{} `json:"transitions"`
+	Transitions []map[string]interface{} `json:"transitions,omitempty"`
 	// Transition name.
 	// Required: Yes.
-	TransitionsName string `json:"transitions.*.name"`
+	TransitionsName string `json:"transitions.*.name,omitempty"`
 	_event          `json:",squash"`
 }
 
@@ -39,7 +39,7 @@ type TransitionListChangedEvent struct {
 type TransitionDurationChangedEvent struct {
 	// New transition duration.
 	// Required: Yes.
-	NewDuration int `json:"new-duration"`
+	NewDuration int `json:"new-duration,omitempty"`
 	_event      `json:",squash"`
 }
 
@@ -51,20 +51,20 @@ type TransitionDurationChangedEvent struct {
 type TransitionBeginEvent struct {
 	// Transition name.
 	// Required: Yes.
-	Name string `json:"name"`
+	Name string `json:"name,omitempty"`
 	// Transition type.
 	// Required: Yes.
-	Type_ string `json:"type"`
+	Type_ string `json:"type,omitempty"`
 	// Transition duration (in milliseconds).
 	// Will be -1 for any transition with a fixed duration, such as a Stinger, due to limitations of the OBS API.
 	// Required: Yes.
-	Duration int `json:"duration"`
+	Duration int `json:"duration,omitempty"`
 	// Source scene of the transition.
 	// Required: No.
-	FromScene string `json:"from-scene"`
+	FromScene string `json:"from-scene,omitempty"`
 	// Destination scene of the transition.
 	// Required: Yes.
-	ToScene string `json:"to-scene"`
+	ToScene string `json:"to-scene,omitempty"`
 	_event  `json:",squash"`
 }
 
@@ -77,16 +77,16 @@ type TransitionBeginEvent struct {
 type TransitionEndEvent struct {
 	// Transition name.
 	// Required: Yes.
-	Name string `json:"name"`
+	Name string `json:"name,omitempty"`
 	// Transition type.
 	// Required: Yes.
-	Type_ string `json:"type"`
+	Type_ string `json:"type,omitempty"`
 	// Transition duration (in milliseconds).
 	// Required: Yes.
-	Duration int `json:"duration"`
+	Duration int `json:"duration,omitempty"`
 	// Destination scene of the transition.
 	// Required: Yes.
-	ToScene string `json:"to-scene"`
+	ToScene string `json:"to-scene,omitempty"`
 	_event  `json:",squash"`
 }
 
@@ -98,18 +98,18 @@ type TransitionEndEvent struct {
 type TransitionVideoEndEvent struct {
 	// Transition name.
 	// Required: Yes.
-	Name string `json:"name"`
+	Name string `json:"name,omitempty"`
 	// Transition type.
 	// Required: Yes.
-	Type_ string `json:"type"`
+	Type_ string `json:"type,omitempty"`
 	// Transition duration (in milliseconds).
 	// Required: Yes.
-	Duration int `json:"duration"`
+	Duration int `json:"duration,omitempty"`
 	// Source scene of the transition.
 	// Required: No.
-	FromScene string `json:"from-scene"`
+	FromScene string `json:"from-scene,omitempty"`
 	// Destination scene of the transition.
 	// Required: Yes.
-	ToScene string `json:"to-scene"`
+	ToScene string `json:"to-scene,omitempty"`
 	_event  `json:",squash"`
 }

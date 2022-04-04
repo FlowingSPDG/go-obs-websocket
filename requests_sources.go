@@ -94,17 +94,17 @@ func (r GetMediaSourcesListRequest) SendReceive(c Client) (GetMediaSourcesListRe
 type GetMediaSourcesListResponse struct {
 	// Array of sources.
 	// Required: Yes.
-	MediaSources []map[string]interface{} `json:"mediaSources"`
+	MediaSources []map[string]interface{} `json:"mediaSources,omitempty"`
 	// Unique source name.
 	// Required: Yes.
-	MediaSourcesSourceName string `json:"mediaSources.*.sourceName"`
+	MediaSourcesSourceName string `json:"mediaSources.*.sourceName,omitempty"`
 	// Unique source internal type (a.k.a `ffmpeg_source` or `vlc_source`).
 	// Required: Yes.
-	MediaSourcesSourceKind string `json:"mediaSources.*.sourceKind"`
+	MediaSourcesSourceKind string `json:"mediaSources.*.sourceKind,omitempty"`
 	// The current state of media for that source.
 	// States: `none`, `playing`, `opening`, `buffering`, `paused`, `stopped`, `ended`, `error`, `unknown`.
 	// Required: Yes.
-	MediaSourcesMediaState string `json:"mediaSources.*.mediaState"`
+	MediaSourcesMediaState string `json:"mediaSources.*.mediaState,omitempty"`
 	_response              `json:",squash"`
 }
 
@@ -116,21 +116,21 @@ type GetMediaSourcesListResponse struct {
 type CreateSourceRequest struct {
 	// Source name.
 	// Required: Yes.
-	SourceName string `json:"sourceName"`
+	SourceName string `json:"sourceName,omitempty"`
 	// Source kind, Eg.
 	// `vlc_source`.
 	// Required: Yes.
-	SourceKind string `json:"sourceKind"`
+	SourceKind string `json:"sourceKind,omitempty"`
 	// Scene to add the new source to.
 	// Required: Yes.
-	SceneName string `json:"sceneName"`
+	SceneName string `json:"sceneName,omitempty"`
 	// Source settings data.
 	// Required: No.
-	SourceSettings map[string]interface{} `json:"sourceSettings"`
+	SourceSettings map[string]interface{} `json:"sourceSettings,omitempty"`
 	// Set the created SceneItem as visible or not.
 	// Defaults to true.
 	// Required: No.
-	SetVisible bool `json:"setVisible"`
+	SetVisible bool `json:"setVisible,omitempty"`
 	_request   `json:",squash"`
 	response   chan CreateSourceResponse
 }
@@ -222,7 +222,7 @@ func (r CreateSourceRequest) SendReceive(c Client) (CreateSourceResponse, error)
 type CreateSourceResponse struct {
 	// ID of the SceneItem in the scene.
 	// Required: Yes.
-	ItemID    int `json:"itemId"`
+	ItemID    int `json:"itemId,omitempty"`
 	_response `json:",squash"`
 }
 
@@ -312,17 +312,17 @@ func (r GetSourcesListRequest) SendReceive(c Client) (GetSourcesListResponse, er
 type GetSourcesListResponse struct {
 	// Array of sources.
 	// Required: Yes.
-	Sources []map[string]interface{} `json:"sources"`
+	Sources []map[string]interface{} `json:"sources,omitempty"`
 	// Unique source name.
 	// Required: Yes.
-	SourcesName string `json:"sources.*.name"`
+	SourcesName string `json:"sources.*.name,omitempty"`
 	// Non-unique source internal type (a.k.a kind).
 	// Required: Yes.
-	SourcesTypeID string `json:"sources.*.typeId"`
+	SourcesTypeID string `json:"sources.*.typeId,omitempty"`
 	// Source type.
 	// Value is one of the following: "input", "filter", "transition", "scene" or "unknown".
 	// Required: Yes.
-	SourcesType string `json:"sources.*.type"`
+	SourcesType string `json:"sources.*.type,omitempty"`
 	_response   `json:",squash"`
 }
 
@@ -412,44 +412,44 @@ func (r GetSourceTypesListRequest) SendReceive(c Client) (GetSourceTypesListResp
 type GetSourceTypesListResponse struct {
 	// Array of source types.
 	// Required: Yes.
-	Types []map[string]interface{} `json:"types"`
+	Types []map[string]interface{} `json:"types,omitempty"`
 	// Non-unique internal source type ID.
 	// Required: Yes.
-	TypesTypeID string `json:"types.*.typeId"`
+	TypesTypeID string `json:"types.*.typeId,omitempty"`
 	// Display name of the source type.
 	// Required: Yes.
-	TypesDisplayName string `json:"types.*.displayName"`
+	TypesDisplayName string `json:"types.*.displayName,omitempty"`
 	// Type.
 	// Value is one of the following: "input", "filter", "transition" or "other".
 	// Required: Yes.
-	TypesType string `json:"types.*.type"`
+	TypesType string `json:"types.*.type,omitempty"`
 	// Default settings of this source type.
 	// Required: Yes.
-	TypesDefaultSettings map[string]interface{} `json:"types.*.defaultSettings"`
+	TypesDefaultSettings map[string]interface{} `json:"types.*.defaultSettings,omitempty"`
 	// Source type capabilities.
 	// Required: Yes.
-	TypesCaps map[string]interface{} `json:"types.*.caps"`
+	TypesCaps map[string]interface{} `json:"types.*.caps,omitempty"`
 	// True if source of this type provide frames asynchronously.
 	// Required: Yes.
-	TypesCapsIsAsync bool `json:"types.*.caps.isAsync"`
+	TypesCapsIsAsync bool `json:"types.*.caps.isAsync,omitempty"`
 	// True if sources of this type provide video.
 	// Required: Yes.
-	TypesCapsHasVideo bool `json:"types.*.caps.hasVideo"`
+	TypesCapsHasVideo bool `json:"types.*.caps.hasVideo,omitempty"`
 	// True if sources of this type provide audio.
 	// Required: Yes.
-	TypesCapsHasAudio bool `json:"types.*.caps.hasAudio"`
+	TypesCapsHasAudio bool `json:"types.*.caps.hasAudio,omitempty"`
 	// True if interaction with this sources of this type is possible.
 	// Required: Yes.
-	TypesCapsCanInteract bool `json:"types.*.caps.canInteract"`
+	TypesCapsCanInteract bool `json:"types.*.caps.canInteract,omitempty"`
 	// True if sources of this type composite one or more sub-sources.
 	// Required: Yes.
-	TypesCapsIsComposite bool `json:"types.*.caps.isComposite"`
+	TypesCapsIsComposite bool `json:"types.*.caps.isComposite,omitempty"`
 	// True if sources of this type should not be fully duplicated.
 	// Required: Yes.
-	TypesCapsDoNotDuplicate bool `json:"types.*.caps.doNotDuplicate"`
+	TypesCapsDoNotDuplicate bool `json:"types.*.caps.doNotDuplicate,omitempty"`
 	// True if sources of this type may cause a feedback loop if it's audio is monitored and shouldn't be.
 	// Required: Yes.
-	TypesCapsDoNotSelfMonitor bool `json:"types.*.caps.doNotSelfMonitor"`
+	TypesCapsDoNotSelfMonitor bool `json:"types.*.caps.doNotSelfMonitor,omitempty"`
 	_response                 `json:",squash"`
 }
 
@@ -462,10 +462,10 @@ type GetSourceTypesListResponse struct {
 type GetVolumeRequest struct {
 	// Source name.
 	// Required: Yes.
-	Source string `json:"source"`
+	Source string `json:"source,omitempty"`
 	// Output volume in decibels of attenuation instead of amplitude/mul.
 	// Required: No.
-	UseDecibel bool `json:"useDecibel"`
+	UseDecibel bool `json:"useDecibel,omitempty"`
 	_request   `json:",squash"`
 	response   chan GetVolumeResponse
 }
@@ -551,14 +551,14 @@ func (r GetVolumeRequest) SendReceive(c Client) (GetVolumeResponse, error) {
 type GetVolumeResponse struct {
 	// Source name.
 	// Required: Yes.
-	Name string `json:"name"`
+	Name string `json:"name,omitempty"`
 	// Volume of the source.
 	// Between `0.0` and `20.0` if using mul, under `26.0` if using dB.
 	// Required: Yes.
-	Volume float64 `json:"volume"`
+	Volume float64 `json:"volume,omitempty"`
 	// Indicates whether the source is muted.
 	// Required: Yes.
-	Muted     bool `json:"muted"`
+	Muted     bool `json:"muted,omitempty"`
 	_response `json:",squash"`
 }
 
@@ -571,16 +571,16 @@ type GetVolumeResponse struct {
 type SetVolumeRequest struct {
 	// Source name.
 	// Required: Yes.
-	Source string `json:"source"`
+	Source string `json:"source,omitempty"`
 	// Desired volume.
 	// Must be between `0.0` and `20.0` for mul, and under 26.0 for dB.
 	// OBS will interpret dB values under -100.0 as Inf.
 	// Note: The OBS volume sliders only reach a maximum of 1.0mul/0.0dB, however OBS actually supports larger values.
 	// Required: Yes.
-	Volume float64 `json:"volume"`
+	Volume float64 `json:"volume,omitempty"`
 	// Interperet `volume` data as decibels instead of amplitude/mul.
 	// Required: No.
-	UseDecibel bool `json:"useDecibel"`
+	UseDecibel bool `json:"useDecibel,omitempty"`
 	_request   `json:",squash"`
 	response   chan SetVolumeResponse
 }
@@ -677,13 +677,13 @@ type SetVolumeResponse struct {
 type SetAudioTracksRequest struct {
 	// Source name.
 	// Required: Yes.
-	SourceName string `json:"sourceName"`
+	SourceName string `json:"sourceName,omitempty"`
 	// Audio tracks 1-6.
 	// Required: Yes.
-	Track int `json:"track"`
+	Track int `json:"track,omitempty"`
 	// Whether audio track is active or not.
 	// Required: Yes.
-	Active   bool `json:"active"`
+	Active   bool `json:"active,omitempty"`
 	_request `json:",squash"`
 	response chan SetAudioTracksResponse
 }
@@ -780,7 +780,7 @@ type SetAudioTracksResponse struct {
 type GetAudioTracksRequest struct {
 	// Source name.
 	// Required: Yes.
-	SourceName string `json:"sourceName"`
+	SourceName string `json:"sourceName,omitempty"`
 	_request   `json:",squash"`
 	response   chan GetAudioTracksResponse
 }
@@ -861,17 +861,17 @@ func (r GetAudioTracksRequest) SendReceive(c Client) (GetAudioTracksResponse, er
 // https://github.com/Palakis/obs-websocket/blob/4.x-current/docs/generated/protocol.md#getaudiotracks
 type GetAudioTracksResponse struct {
 	// Required: Yes.
-	Track1 bool `json:"track1"`
+	Track1 bool `json:"track1,omitempty"`
 	// Required: Yes.
-	Track2 bool `json:"track2"`
+	Track2 bool `json:"track2,omitempty"`
 	// Required: Yes.
-	Track3 bool `json:"track3"`
+	Track3 bool `json:"track3,omitempty"`
 	// Required: Yes.
-	Track4 bool `json:"track4"`
+	Track4 bool `json:"track4,omitempty"`
 	// Required: Yes.
-	Track5 bool `json:"track5"`
+	Track5 bool `json:"track5,omitempty"`
 	// Required: Yes.
-	Track6    bool `json:"track6"`
+	Track6    bool `json:"track6,omitempty"`
 	_response `json:",squash"`
 }
 
@@ -883,7 +883,7 @@ type GetAudioTracksResponse struct {
 type GetMuteRequest struct {
 	// Source name.
 	// Required: Yes.
-	Source   string `json:"source"`
+	Source   string `json:"source,omitempty"`
 	_request `json:",squash"`
 	response chan GetMuteResponse
 }
@@ -965,10 +965,10 @@ func (r GetMuteRequest) SendReceive(c Client) (GetMuteResponse, error) {
 type GetMuteResponse struct {
 	// Source name.
 	// Required: Yes.
-	Name string `json:"name"`
+	Name string `json:"name,omitempty"`
 	// Mute status of the source.
 	// Required: Yes.
-	Muted     bool `json:"muted"`
+	Muted     bool `json:"muted,omitempty"`
 	_response `json:",squash"`
 }
 
@@ -980,10 +980,10 @@ type GetMuteResponse struct {
 type SetMuteRequest struct {
 	// Source name.
 	// Required: Yes.
-	Source string `json:"source"`
+	Source string `json:"source,omitempty"`
 	// Desired mute status.
 	// Required: Yes.
-	Mute     bool `json:"mute"`
+	Mute     bool `json:"mute,omitempty"`
 	_request `json:",squash"`
 	response chan SetMuteResponse
 }
@@ -1078,7 +1078,7 @@ type SetMuteResponse struct {
 type ToggleMuteRequest struct {
 	// Source name.
 	// Required: Yes.
-	Source   string `json:"source"`
+	Source   string `json:"source,omitempty"`
 	_request `json:",squash"`
 	response chan ToggleMuteResponse
 }
@@ -1169,7 +1169,7 @@ type ToggleMuteResponse struct {
 type GetSourceActiveRequest struct {
 	// Source name.
 	// Required: Yes.
-	SourceName string `json:"sourceName"`
+	SourceName string `json:"sourceName,omitempty"`
 	_request   `json:",squash"`
 	response   chan GetSourceActiveResponse
 }
@@ -1251,7 +1251,7 @@ func (r GetSourceActiveRequest) SendReceive(c Client) (GetSourceActiveResponse, 
 type GetSourceActiveResponse struct {
 	// Source active status of the source.
 	// Required: Yes.
-	SourceActive bool `json:"sourceActive"`
+	SourceActive bool `json:"sourceActive,omitempty"`
 	_response    `json:",squash"`
 }
 
@@ -1263,7 +1263,7 @@ type GetSourceActiveResponse struct {
 type GetAudioActiveRequest struct {
 	// Source name.
 	// Required: Yes.
-	SourceName string `json:"sourceName"`
+	SourceName string `json:"sourceName,omitempty"`
 	_request   `json:",squash"`
 	response   chan GetAudioActiveResponse
 }
@@ -1345,7 +1345,7 @@ func (r GetAudioActiveRequest) SendReceive(c Client) (GetAudioActiveResponse, er
 type GetAudioActiveResponse struct {
 	// Audio active status of the source.
 	// Required: Yes.
-	AudioActive bool `json:"audioActive"`
+	AudioActive bool `json:"audioActive,omitempty"`
 	_response   `json:",squash"`
 }
 
@@ -1359,10 +1359,10 @@ type GetAudioActiveResponse struct {
 type SetSourceNameRequest struct {
 	// Source name.
 	// Required: Yes.
-	SourceName string `json:"sourceName"`
+	SourceName string `json:"sourceName,omitempty"`
 	// New source name.
 	// Required: Yes.
-	NewName  string `json:"newName"`
+	NewName  string `json:"newName,omitempty"`
 	_request `json:",squash"`
 	response chan SetSourceNameResponse
 }
@@ -1457,10 +1457,10 @@ type SetSourceNameResponse struct {
 type SetSyncOffsetRequest struct {
 	// Source name.
 	// Required: Yes.
-	Source string `json:"source"`
+	Source string `json:"source,omitempty"`
 	// The desired audio sync offset (in nanoseconds).
 	// Required: Yes.
-	Offset   int `json:"offset"`
+	Offset   int `json:"offset,omitempty"`
 	_request `json:",squash"`
 	response chan SetSyncOffsetResponse
 }
@@ -1555,7 +1555,7 @@ type SetSyncOffsetResponse struct {
 type GetSyncOffsetRequest struct {
 	// Source name.
 	// Required: Yes.
-	Source   string `json:"source"`
+	Source   string `json:"source,omitempty"`
 	_request `json:",squash"`
 	response chan GetSyncOffsetResponse
 }
@@ -1637,10 +1637,10 @@ func (r GetSyncOffsetRequest) SendReceive(c Client) (GetSyncOffsetResponse, erro
 type GetSyncOffsetResponse struct {
 	// Source name.
 	// Required: Yes.
-	Name string `json:"name"`
+	Name string `json:"name,omitempty"`
 	// The audio sync offset (in nanoseconds).
 	// Required: Yes.
-	Offset    int `json:"offset"`
+	Offset    int `json:"offset,omitempty"`
 	_response `json:",squash"`
 }
 
@@ -1652,11 +1652,11 @@ type GetSyncOffsetResponse struct {
 type GetSourceSettingsRequest struct {
 	// Source name.
 	// Required: Yes.
-	SourceName string `json:"sourceName"`
+	SourceName string `json:"sourceName,omitempty"`
 	// Type of the specified source.
 	// Useful for type-checking if you expect a specific settings schema.
 	// Required: No.
-	SourceType string `json:"sourceType"`
+	SourceType string `json:"sourceType,omitempty"`
 	_request   `json:",squash"`
 	response   chan GetSourceSettingsResponse
 }
@@ -1742,13 +1742,13 @@ func (r GetSourceSettingsRequest) SendReceive(c Client) (GetSourceSettingsRespon
 type GetSourceSettingsResponse struct {
 	// Source name.
 	// Required: Yes.
-	SourceName string `json:"sourceName"`
+	SourceName string `json:"sourceName,omitempty"`
 	// Type of the specified source.
 	// Required: Yes.
-	SourceType string `json:"sourceType"`
+	SourceType string `json:"sourceType,omitempty"`
 	// Source settings (varies between source types, may require some probing around).
 	// Required: Yes.
-	SourceSettings map[string]interface{} `json:"sourceSettings"`
+	SourceSettings map[string]interface{} `json:"sourceSettings,omitempty"`
 	_response      `json:",squash"`
 }
 
@@ -1760,14 +1760,14 @@ type GetSourceSettingsResponse struct {
 type SetSourceSettingsRequest struct {
 	// Source name.
 	// Required: Yes.
-	SourceName string `json:"sourceName"`
+	SourceName string `json:"sourceName,omitempty"`
 	// Type of the specified source.
 	// Useful for type-checking to avoid settings a set of settings incompatible with the actual source's type.
 	// Required: No.
-	SourceType string `json:"sourceType"`
+	SourceType string `json:"sourceType,omitempty"`
 	// Source settings (varies between source types, may require some probing around).
 	// Required: Yes.
-	SourceSettings map[string]interface{} `json:"sourceSettings"`
+	SourceSettings map[string]interface{} `json:"sourceSettings,omitempty"`
 	_request       `json:",squash"`
 	response       chan SetSourceSettingsResponse
 }
@@ -1855,13 +1855,13 @@ func (r SetSourceSettingsRequest) SendReceive(c Client) (SetSourceSettingsRespon
 type SetSourceSettingsResponse struct {
 	// Source name.
 	// Required: Yes.
-	SourceName string `json:"sourceName"`
+	SourceName string `json:"sourceName,omitempty"`
 	// Type of the specified source.
 	// Required: Yes.
-	SourceType string `json:"sourceType"`
+	SourceType string `json:"sourceType,omitempty"`
 	// Updated source settings.
 	// Required: Yes.
-	SourceSettings map[string]interface{} `json:"sourceSettings"`
+	SourceSettings map[string]interface{} `json:"sourceSettings,omitempty"`
 	_response      `json:",squash"`
 }
 
@@ -1873,7 +1873,7 @@ type SetSourceSettingsResponse struct {
 type GetTextGDIPlusPropertiesRequest struct {
 	// Source name.
 	// Required: Yes.
-	Source   string `json:"source"`
+	Source   string `json:"source,omitempty"`
 	_request `json:",squash"`
 	response chan GetTextGDIPlusPropertiesResponse
 }
@@ -1955,90 +1955,90 @@ func (r GetTextGDIPlusPropertiesRequest) SendReceive(c Client) (GetTextGDIPlusPr
 type GetTextGDIPlusPropertiesResponse struct {
 	// Source name.
 	// Required: Yes.
-	Source string `json:"source"`
+	Source string `json:"source,omitempty"`
 	// Text Alignment ("left", "center", "right").
 	// Required: Yes.
-	Align string `json:"align"`
+	Align string `json:"align,omitempty"`
 	// Background color.
 	// Required: Yes.
-	BkColor int `json:"bk_color"`
+	BkColor int `json:"bk_color,omitempty"`
 	// Background opacity (0-100).
 	// Required: Yes.
-	BkOpacity int `json:"bk_opacity"`
+	BkOpacity int `json:"bk_opacity,omitempty"`
 	// Chat log.
 	// Required: Yes.
-	Chatlog bool `json:"chatlog"`
+	Chatlog bool `json:"chatlog,omitempty"`
 	// Chat log lines.
 	// Required: Yes.
-	ChatlogLines int `json:"chatlog_lines"`
+	ChatlogLines int `json:"chatlog_lines,omitempty"`
 	// Text color.
 	// Required: Yes.
-	Color int `json:"color"`
+	Color int `json:"color,omitempty"`
 	// Extents wrap.
 	// Required: Yes.
-	Extents bool `json:"extents"`
+	Extents bool `json:"extents,omitempty"`
 	// Extents cx.
 	// Required: Yes.
-	ExtentsCx int `json:"extents_cx"`
+	ExtentsCx int `json:"extents_cx,omitempty"`
 	// Extents cy.
 	// Required: Yes.
-	ExtentsCy int `json:"extents_cy"`
+	ExtentsCy int `json:"extents_cy,omitempty"`
 	// File path name.
 	// Required: Yes.
-	File string `json:"file"`
+	File string `json:"file,omitempty"`
 	// Read text from the specified file.
 	// Required: Yes.
-	ReadFromFile bool `json:"read_from_file"`
+	ReadFromFile bool `json:"read_from_file,omitempty"`
 	// Holds data for the font.
 	// Ex: `"font": { "face": "Arial", "flags": 0, "size": 150, "style": "" }`.
 	// Required: Yes.
-	Font map[string]interface{} `json:"font"`
+	Font map[string]interface{} `json:"font,omitempty"`
 	// Font face.
 	// Required: Yes.
-	FontFace string `json:"font.face"`
+	FontFace string `json:"font.face,omitempty"`
 	// Font text styling flag.
 	// `Bold=1, Italic=2, Bold Italic=3, Underline=5, Strikeout=8`.
 	// Required: Yes.
-	FontFlags int `json:"font.flags"`
+	FontFlags int `json:"font.flags,omitempty"`
 	// Font text size.
 	// Required: Yes.
-	FontSize int `json:"font.size"`
+	FontSize int `json:"font.size,omitempty"`
 	// Font Style (unknown function).
 	// Required: Yes.
-	FontStyle string `json:"font.style"`
+	FontStyle string `json:"font.style,omitempty"`
 	// Gradient enabled.
 	// Required: Yes.
-	Gradient bool `json:"gradient"`
+	Gradient bool `json:"gradient,omitempty"`
 	// Gradient color.
 	// Required: Yes.
-	GradientColor int `json:"gradient_color"`
+	GradientColor int `json:"gradient_color,omitempty"`
 	// Gradient direction.
 	// Required: Yes.
-	GradientDir float64 `json:"gradient_dir"`
+	GradientDir float64 `json:"gradient_dir,omitempty"`
 	// Gradient opacity (0-100).
 	// Required: Yes.
-	GradientOpacity int `json:"gradient_opacity"`
+	GradientOpacity int `json:"gradient_opacity,omitempty"`
 	// Outline.
 	// Required: Yes.
-	Outline bool `json:"outline"`
+	Outline bool `json:"outline,omitempty"`
 	// Outline color.
 	// Required: Yes.
-	OutlineColor int `json:"outline_color"`
+	OutlineColor int `json:"outline_color,omitempty"`
 	// Outline size.
 	// Required: Yes.
-	OutlineSize int `json:"outline_size"`
+	OutlineSize int `json:"outline_size,omitempty"`
 	// Outline opacity (0-100).
 	// Required: Yes.
-	OutlineOpacity int `json:"outline_opacity"`
+	OutlineOpacity int `json:"outline_opacity,omitempty"`
 	// Text content to be displayed.
 	// Required: Yes.
-	Text string `json:"text"`
+	Text string `json:"text,omitempty"`
 	// Text vertical alignment ("top", "center", "bottom").
 	// Required: Yes.
-	Valign string `json:"valign"`
+	Valign string `json:"valign,omitempty"`
 	// Vertical text enabled.
 	// Required: Yes.
-	Vertical  bool `json:"vertical"`
+	Vertical  bool `json:"vertical,omitempty"`
 	_response `json:",squash"`
 }
 
@@ -2050,93 +2050,93 @@ type GetTextGDIPlusPropertiesResponse struct {
 type SetTextGDIPlusPropertiesRequest struct {
 	// Name of the source.
 	// Required: Yes.
-	Source string `json:"source"`
+	Source string `json:"source,omitempty"`
 	// Text Alignment ("left", "center", "right").
 	// Required: No.
-	Align string `json:"align"`
+	Align string `json:"align,omitempty"`
 	// Background color.
 	// Required: No.
-	BkColor int `json:"bk_color"`
+	BkColor int `json:"bk_color,omitempty"`
 	// Background opacity (0-100).
 	// Required: No.
-	BkOpacity int `json:"bk_opacity"`
+	BkOpacity int `json:"bk_opacity,omitempty"`
 	// Chat log.
 	// Required: No.
-	Chatlog bool `json:"chatlog"`
+	Chatlog bool `json:"chatlog,omitempty"`
 	// Chat log lines.
 	// Required: No.
-	ChatlogLines int `json:"chatlog_lines"`
+	ChatlogLines int `json:"chatlog_lines,omitempty"`
 	// Text color.
 	// Required: No.
-	Color int `json:"color"`
+	Color int `json:"color,omitempty"`
 	// Extents wrap.
 	// Required: No.
-	Extents bool `json:"extents"`
+	Extents bool `json:"extents,omitempty"`
 	// Extents cx.
 	// Required: No.
-	ExtentsCx int `json:"extents_cx"`
+	ExtentsCx int `json:"extents_cx,omitempty"`
 	// Extents cy.
 	// Required: No.
-	ExtentsCy int `json:"extents_cy"`
+	ExtentsCy int `json:"extents_cy,omitempty"`
 	// File path name.
 	// Required: No.
-	File string `json:"file"`
+	File string `json:"file,omitempty"`
 	// Read text from the specified file.
 	// Required: No.
-	ReadFromFile bool `json:"read_from_file"`
+	ReadFromFile bool `json:"read_from_file,omitempty"`
 	// Holds data for the font.
 	// Ex: `"font": { "face": "Arial", "flags": 0, "size": 150, "style": "" }`.
 	// Required: No.
-	Font map[string]interface{} `json:"font"`
+	Font map[string]interface{} `json:"font,omitempty"`
 	// Font face.
 	// Required: No.
-	FontFace string `json:"font.face"`
+	FontFace string `json:"font.face,omitempty"`
 	// Font text styling flag.
 	// `Bold=1, Italic=2, Bold Italic=3, Underline=5, Strikeout=8`.
 	// Required: No.
-	FontFlags int `json:"font.flags"`
+	FontFlags int `json:"font.flags,omitempty"`
 	// Font text size.
 	// Required: No.
-	FontSize int `json:"font.size"`
+	FontSize int `json:"font.size,omitempty"`
 	// Font Style (unknown function).
 	// Required: No.
-	FontStyle string `json:"font.style"`
+	FontStyle string `json:"font.style,omitempty"`
 	// Gradient enabled.
 	// Required: No.
-	Gradient bool `json:"gradient"`
+	Gradient bool `json:"gradient,omitempty"`
 	// Gradient color.
 	// Required: No.
-	GradientColor int `json:"gradient_color"`
+	GradientColor int `json:"gradient_color,omitempty"`
 	// Gradient direction.
 	// Required: No.
-	GradientDir float64 `json:"gradient_dir"`
+	GradientDir float64 `json:"gradient_dir,omitempty"`
 	// Gradient opacity (0-100).
 	// Required: No.
-	GradientOpacity int `json:"gradient_opacity"`
+	GradientOpacity int `json:"gradient_opacity,omitempty"`
 	// Outline.
 	// Required: No.
-	Outline bool `json:"outline"`
+	Outline bool `json:"outline,omitempty"`
 	// Outline color.
 	// Required: No.
-	OutlineColor int `json:"outline_color"`
+	OutlineColor int `json:"outline_color,omitempty"`
 	// Outline size.
 	// Required: No.
-	OutlineSize int `json:"outline_size"`
+	OutlineSize int `json:"outline_size,omitempty"`
 	// Outline opacity (0-100).
 	// Required: No.
-	OutlineOpacity int `json:"outline_opacity"`
+	OutlineOpacity int `json:"outline_opacity,omitempty"`
 	// Text content to be displayed.
 	// Required: No.
-	Text string `json:"text"`
+	Text string `json:"text,omitempty"`
 	// Text vertical alignment ("top", "center", "bottom").
 	// Required: No.
-	Valign string `json:"valign"`
+	Valign string `json:"valign,omitempty"`
 	// Vertical text enabled.
 	// Required: No.
-	Vertical bool `json:"vertical"`
+	Vertical bool `json:"vertical,omitempty"`
 	// Visibility of the scene item.
 	// Required: No.
-	Render   bool `json:"render"`
+	Render   bool `json:"render,omitempty"`
 	_request `json:",squash"`
 	response chan SetTextGDIPlusPropertiesResponse
 }
@@ -2285,7 +2285,7 @@ type SetTextGDIPlusPropertiesResponse struct {
 type GetTextFreetype2PropertiesRequest struct {
 	// Source name.
 	// Required: Yes.
-	Source   string `json:"source"`
+	Source   string `json:"source,omitempty"`
 	_request `json:",squash"`
 	response chan GetTextFreetype2PropertiesResponse
 }
@@ -2367,54 +2367,54 @@ func (r GetTextFreetype2PropertiesRequest) SendReceive(c Client) (GetTextFreetyp
 type GetTextFreetype2PropertiesResponse struct {
 	// Source name.
 	// Required: Yes.
-	Source string `json:"source"`
+	Source string `json:"source,omitempty"`
 	// Gradient top color.
 	// Required: Yes.
-	Color1 int `json:"color1"`
+	Color1 int `json:"color1,omitempty"`
 	// Gradient bottom color.
 	// Required: Yes.
-	Color2 int `json:"color2"`
+	Color2 int `json:"color2,omitempty"`
 	// Custom width (0 to disable).
 	// Required: Yes.
-	CustomWidth int `json:"custom_width"`
+	CustomWidth int `json:"custom_width,omitempty"`
 	// Drop shadow.
 	// Required: Yes.
-	DropShadow bool `json:"drop_shadow"`
+	DropShadow bool `json:"drop_shadow,omitempty"`
 	// Holds data for the font.
 	// Ex: `"font": { "face": "Arial", "flags": 0, "size": 150, "style": "" }`.
 	// Required: Yes.
-	Font map[string]interface{} `json:"font"`
+	Font map[string]interface{} `json:"font,omitempty"`
 	// Font face.
 	// Required: Yes.
-	FontFace string `json:"font.face"`
+	FontFace string `json:"font.face,omitempty"`
 	// Font text styling flag.
 	// `Bold=1, Italic=2, Bold Italic=3, Underline=5, Strikeout=8`.
 	// Required: Yes.
-	FontFlags int `json:"font.flags"`
+	FontFlags int `json:"font.flags,omitempty"`
 	// Font text size.
 	// Required: Yes.
-	FontSize int `json:"font.size"`
+	FontSize int `json:"font.size,omitempty"`
 	// Font Style (unknown function).
 	// Required: Yes.
-	FontStyle string `json:"font.style"`
+	FontStyle string `json:"font.style,omitempty"`
 	// Read text from the specified file.
 	// Required: Yes.
-	FromFile bool `json:"from_file"`
+	FromFile bool `json:"from_file,omitempty"`
 	// Chat log.
 	// Required: Yes.
-	LogMode bool `json:"log_mode"`
+	LogMode bool `json:"log_mode,omitempty"`
 	// Outline.
 	// Required: Yes.
-	Outline bool `json:"outline"`
+	Outline bool `json:"outline,omitempty"`
 	// Text content to be displayed.
 	// Required: Yes.
-	Text string `json:"text"`
+	Text string `json:"text,omitempty"`
 	// File path.
 	// Required: Yes.
-	TextFile string `json:"text_file"`
+	TextFile string `json:"text_file,omitempty"`
 	// Word wrap.
 	// Required: Yes.
-	WordWrap  bool `json:"word_wrap"`
+	WordWrap  bool `json:"word_wrap,omitempty"`
 	_response `json:",squash"`
 }
 
@@ -2426,54 +2426,54 @@ type GetTextFreetype2PropertiesResponse struct {
 type SetTextFreetype2PropertiesRequest struct {
 	// Source name.
 	// Required: Yes.
-	Source string `json:"source"`
+	Source string `json:"source,omitempty"`
 	// Gradient top color.
 	// Required: No.
-	Color1 int `json:"color1"`
+	Color1 int `json:"color1,omitempty"`
 	// Gradient bottom color.
 	// Required: No.
-	Color2 int `json:"color2"`
+	Color2 int `json:"color2,omitempty"`
 	// Custom width (0 to disable).
 	// Required: No.
-	CustomWidth int `json:"custom_width"`
+	CustomWidth int `json:"custom_width,omitempty"`
 	// Drop shadow.
 	// Required: No.
-	DropShadow bool `json:"drop_shadow"`
+	DropShadow bool `json:"drop_shadow,omitempty"`
 	// Holds data for the font.
 	// Ex: `"font": { "face": "Arial", "flags": 0, "size": 150, "style": "" }`.
 	// Required: No.
-	Font map[string]interface{} `json:"font"`
+	Font map[string]interface{} `json:"font,omitempty"`
 	// Font face.
 	// Required: No.
-	FontFace string `json:"font.face"`
+	FontFace string `json:"font.face,omitempty"`
 	// Font text styling flag.
 	// `Bold=1, Italic=2, Bold Italic=3, Underline=5, Strikeout=8`.
 	// Required: No.
-	FontFlags int `json:"font.flags"`
+	FontFlags int `json:"font.flags,omitempty"`
 	// Font text size.
 	// Required: No.
-	FontSize int `json:"font.size"`
+	FontSize int `json:"font.size,omitempty"`
 	// Font Style (unknown function).
 	// Required: No.
-	FontStyle string `json:"font.style"`
+	FontStyle string `json:"font.style,omitempty"`
 	// Read text from the specified file.
 	// Required: No.
-	FromFile bool `json:"from_file"`
+	FromFile bool `json:"from_file,omitempty"`
 	// Chat log.
 	// Required: No.
-	LogMode bool `json:"log_mode"`
+	LogMode bool `json:"log_mode,omitempty"`
 	// Outline.
 	// Required: No.
-	Outline bool `json:"outline"`
+	Outline bool `json:"outline,omitempty"`
 	// Text content to be displayed.
 	// Required: No.
-	Text string `json:"text"`
+	Text string `json:"text,omitempty"`
 	// File path.
 	// Required: No.
-	TextFile string `json:"text_file"`
+	TextFile string `json:"text_file,omitempty"`
 	// Word wrap.
 	// Required: No.
-	WordWrap bool `json:"word_wrap"`
+	WordWrap bool `json:"word_wrap,omitempty"`
 	_request `json:",squash"`
 	response chan SetTextFreetype2PropertiesResponse
 }
@@ -2596,7 +2596,7 @@ type SetTextFreetype2PropertiesResponse struct {
 type GetBrowserSourcePropertiesRequest struct {
 	// Source name.
 	// Required: Yes.
-	Source   string `json:"source"`
+	Source   string `json:"source,omitempty"`
 	_request `json:",squash"`
 	response chan GetBrowserSourcePropertiesResponse
 }
@@ -2678,31 +2678,31 @@ func (r GetBrowserSourcePropertiesRequest) SendReceive(c Client) (GetBrowserSour
 type GetBrowserSourcePropertiesResponse struct {
 	// Source name.
 	// Required: Yes.
-	Source string `json:"source"`
+	Source string `json:"source,omitempty"`
 	// Indicates that a local file is in use.
 	// Required: Yes.
-	IsLocalFile bool `json:"is_local_file"`
+	IsLocalFile bool `json:"is_local_file,omitempty"`
 	// file path.
 	// Required: Yes.
-	LocalFile string `json:"local_file"`
+	LocalFile string `json:"local_file,omitempty"`
 	// Url.
 	// Required: Yes.
-	Url string `json:"url"`
+	Url string `json:"url,omitempty"`
 	// CSS to inject.
 	// Required: Yes.
-	Css string `json:"css"`
+	Css string `json:"css,omitempty"`
 	// Width.
 	// Required: Yes.
-	Width int `json:"width"`
+	Width int `json:"width,omitempty"`
 	// Height.
 	// Required: Yes.
-	Height int `json:"height"`
+	Height int `json:"height,omitempty"`
 	// Framerate.
 	// Required: Yes.
-	FPS int `json:"fps"`
+	FPS int `json:"fps,omitempty"`
 	// Indicates whether the source should be shutdown when not visible.
 	// Required: Yes.
-	Shutdown  bool `json:"shutdown"`
+	Shutdown  bool `json:"shutdown,omitempty"`
 	_response `json:",squash"`
 }
 
@@ -2714,34 +2714,34 @@ type GetBrowserSourcePropertiesResponse struct {
 type SetBrowserSourcePropertiesRequest struct {
 	// Name of the source.
 	// Required: Yes.
-	Source string `json:"source"`
+	Source string `json:"source,omitempty"`
 	// Indicates that a local file is in use.
 	// Required: No.
-	IsLocalFile bool `json:"is_local_file"`
+	IsLocalFile bool `json:"is_local_file,omitempty"`
 	// file path.
 	// Required: No.
-	LocalFile string `json:"local_file"`
+	LocalFile string `json:"local_file,omitempty"`
 	// Url.
 	// Required: No.
-	Url string `json:"url"`
+	Url string `json:"url,omitempty"`
 	// CSS to inject.
 	// Required: No.
-	Css string `json:"css"`
+	Css string `json:"css,omitempty"`
 	// Width.
 	// Required: No.
-	Width int `json:"width"`
+	Width int `json:"width,omitempty"`
 	// Height.
 	// Required: No.
-	Height int `json:"height"`
+	Height int `json:"height,omitempty"`
 	// Framerate.
 	// Required: No.
-	FPS int `json:"fps"`
+	FPS int `json:"fps,omitempty"`
 	// Indicates whether the source should be shutdown when not visible.
 	// Required: No.
-	Shutdown bool `json:"shutdown"`
+	Shutdown bool `json:"shutdown,omitempty"`
 	// Visibility of the scene item.
 	// Required: No.
-	Render   bool `json:"render"`
+	Render   bool `json:"render,omitempty"`
 	_request `json:",squash"`
 	response chan SetBrowserSourcePropertiesResponse
 }
@@ -2930,19 +2930,19 @@ func (r GetSpecialSourcesRequest) SendReceive(c Client) (GetSpecialSourcesRespon
 type GetSpecialSourcesResponse struct {
 	// Name of the first Desktop Audio capture source.
 	// Required: No.
-	Desktop1 string `json:"desktop-1"`
+	Desktop1 string `json:"desktop-1,omitempty"`
 	// Name of the second Desktop Audio capture source.
 	// Required: No.
-	Desktop2 string `json:"desktop-2"`
+	Desktop2 string `json:"desktop-2,omitempty"`
 	// Name of the first Mic/Aux input source.
 	// Required: No.
-	Mic1 string `json:"mic-1"`
+	Mic1 string `json:"mic-1,omitempty"`
 	// Name of the second Mic/Aux input source.
 	// Required: No.
-	Mic2 string `json:"mic-2"`
+	Mic2 string `json:"mic-2,omitempty"`
 	// NAme of the third Mic/Aux input source.
 	// Required: No.
-	Mic3      string `json:"mic-3"`
+	Mic3      string `json:"mic-3,omitempty"`
 	_response `json:",squash"`
 }
 
@@ -2954,7 +2954,7 @@ type GetSpecialSourcesResponse struct {
 type GetSourceFiltersRequest struct {
 	// Source name.
 	// Required: Yes.
-	SourceName string `json:"sourceName"`
+	SourceName string `json:"sourceName,omitempty"`
 	_request   `json:",squash"`
 	response   chan GetSourceFiltersResponse
 }
@@ -3036,19 +3036,19 @@ func (r GetSourceFiltersRequest) SendReceive(c Client) (GetSourceFiltersResponse
 type GetSourceFiltersResponse struct {
 	// List of filters for the specified source.
 	// Required: Yes.
-	Filters []map[string]interface{} `json:"filters"`
+	Filters []map[string]interface{} `json:"filters,omitempty"`
 	// Filter status (enabled or not).
 	// Required: Yes.
-	FiltersEnabled bool `json:"filters.*.enabled"`
+	FiltersEnabled bool `json:"filters.*.enabled,omitempty"`
 	// Filter type.
 	// Required: Yes.
-	FiltersType string `json:"filters.*.type"`
+	FiltersType string `json:"filters.*.type,omitempty"`
 	// Filter name.
 	// Required: Yes.
-	FiltersName string `json:"filters.*.name"`
+	FiltersName string `json:"filters.*.name,omitempty"`
 	// Filter settings.
 	// Required: Yes.
-	FiltersSettings map[string]interface{} `json:"filters.*.settings"`
+	FiltersSettings map[string]interface{} `json:"filters.*.settings,omitempty"`
 	_response       `json:",squash"`
 }
 
@@ -3060,10 +3060,10 @@ type GetSourceFiltersResponse struct {
 type GetSourceFilterInfoRequest struct {
 	// Source name.
 	// Required: Yes.
-	SourceName string `json:"sourceName"`
+	SourceName string `json:"sourceName,omitempty"`
 	// Source filter name.
 	// Required: Yes.
-	FilterName string `json:"filterName"`
+	FilterName string `json:"filterName,omitempty"`
 	_request   `json:",squash"`
 	response   chan GetSourceFilterInfoResponse
 }
@@ -3149,16 +3149,16 @@ func (r GetSourceFilterInfoRequest) SendReceive(c Client) (GetSourceFilterInfoRe
 type GetSourceFilterInfoResponse struct {
 	// Filter status (enabled or not).
 	// Required: Yes.
-	Enabled bool `json:"enabled"`
+	Enabled bool `json:"enabled,omitempty"`
 	// Filter type.
 	// Required: Yes.
-	Type_ string `json:"type"`
+	Type_ string `json:"type,omitempty"`
 	// Filter name.
 	// Required: Yes.
-	Name string `json:"name"`
+	Name string `json:"name,omitempty"`
 	// Filter settings.
 	// Required: Yes.
-	Settings  map[string]interface{} `json:"settings"`
+	Settings  map[string]interface{} `json:"settings,omitempty"`
 	_response `json:",squash"`
 }
 
@@ -3171,16 +3171,16 @@ type GetSourceFilterInfoResponse struct {
 type AddFilterToSourceRequest struct {
 	// Name of the source on which the filter is added.
 	// Required: Yes.
-	SourceName string `json:"sourceName"`
+	SourceName string `json:"sourceName,omitempty"`
 	// Name of the new filter.
 	// Required: Yes.
-	FilterName string `json:"filterName"`
+	FilterName string `json:"filterName,omitempty"`
 	// Filter type.
 	// Required: Yes.
-	FilterType string `json:"filterType"`
+	FilterType string `json:"filterType,omitempty"`
 	// Filter settings.
 	// Required: Yes.
-	FilterSettings map[string]interface{} `json:"filterSettings"`
+	FilterSettings map[string]interface{} `json:"filterSettings,omitempty"`
 	_request       `json:",squash"`
 	response       chan AddFilterToSourceResponse
 }
@@ -3279,10 +3279,10 @@ type AddFilterToSourceResponse struct {
 type RemoveFilterFromSourceRequest struct {
 	// Name of the source from which the specified filter is removed.
 	// Required: Yes.
-	SourceName string `json:"sourceName"`
+	SourceName string `json:"sourceName,omitempty"`
 	// Name of the filter to remove.
 	// Required: Yes.
-	FilterName string `json:"filterName"`
+	FilterName string `json:"filterName,omitempty"`
 	_request   `json:",squash"`
 	response   chan RemoveFilterFromSourceResponse
 }
@@ -3377,13 +3377,13 @@ type RemoveFilterFromSourceResponse struct {
 type ReorderSourceFilterRequest struct {
 	// Name of the source to which the filter belongs.
 	// Required: Yes.
-	SourceName string `json:"sourceName"`
+	SourceName string `json:"sourceName,omitempty"`
 	// Name of the filter to reorder.
 	// Required: Yes.
-	FilterName string `json:"filterName"`
+	FilterName string `json:"filterName,omitempty"`
 	// Desired position of the filter in the chain.
 	// Required: Yes.
-	NewIndex int `json:"newIndex"`
+	NewIndex int `json:"newIndex,omitempty"`
 	_request `json:",squash"`
 	response chan ReorderSourceFilterResponse
 }
@@ -3480,14 +3480,14 @@ type ReorderSourceFilterResponse struct {
 type MoveSourceFilterRequest struct {
 	// Name of the source to which the filter belongs.
 	// Required: Yes.
-	SourceName string `json:"sourceName"`
+	SourceName string `json:"sourceName,omitempty"`
 	// Name of the filter to reorder.
 	// Required: Yes.
-	FilterName string `json:"filterName"`
+	FilterName string `json:"filterName,omitempty"`
 	// How to move the filter around in the source's filter chain.
 	// Either "up", "down", "top" or "bottom".
 	// Required: Yes.
-	MovementType string `json:"movementType"`
+	MovementType string `json:"movementType,omitempty"`
 	_request     `json:",squash"`
 	response     chan MoveSourceFilterResponse
 }
@@ -3584,14 +3584,14 @@ type MoveSourceFilterResponse struct {
 type SetSourceFilterSettingsRequest struct {
 	// Name of the source to which the filter belongs.
 	// Required: Yes.
-	SourceName string `json:"sourceName"`
+	SourceName string `json:"sourceName,omitempty"`
 	// Name of the filter to reconfigure.
 	// Required: Yes.
-	FilterName string `json:"filterName"`
+	FilterName string `json:"filterName,omitempty"`
 	// New settings.
 	// These will be merged to the current filter settings.
 	// Required: Yes.
-	FilterSettings map[string]interface{} `json:"filterSettings"`
+	FilterSettings map[string]interface{} `json:"filterSettings,omitempty"`
 	_request       `json:",squash"`
 	response       chan SetSourceFilterSettingsResponse
 }
@@ -3688,13 +3688,13 @@ type SetSourceFilterSettingsResponse struct {
 type SetSourceFilterVisibilityRequest struct {
 	// Source name.
 	// Required: Yes.
-	SourceName string `json:"sourceName"`
+	SourceName string `json:"sourceName,omitempty"`
 	// Source filter name.
 	// Required: Yes.
-	FilterName string `json:"filterName"`
+	FilterName string `json:"filterName,omitempty"`
 	// New filter state.
 	// Required: Yes.
-	FilterEnabled bool `json:"filterEnabled"`
+	FilterEnabled bool `json:"filterEnabled,omitempty"`
 	_request      `json:",squash"`
 	response      chan SetSourceFilterVisibilityResponse
 }
@@ -3791,7 +3791,7 @@ type SetSourceFilterVisibilityResponse struct {
 type GetAudioMonitorTypeRequest struct {
 	// Source name.
 	// Required: Yes.
-	SourceName string `json:"sourceName"`
+	SourceName string `json:"sourceName,omitempty"`
 	_request   `json:",squash"`
 	response   chan GetAudioMonitorTypeResponse
 }
@@ -3874,7 +3874,7 @@ type GetAudioMonitorTypeResponse struct {
 	// The monitor type in use.
 	// Options: `none`, `monitorOnly`, `monitorAndOutput`.
 	// Required: Yes.
-	MonitorType string `json:"monitorType"`
+	MonitorType string `json:"monitorType,omitempty"`
 	_response   `json:",squash"`
 }
 
@@ -3886,11 +3886,11 @@ type GetAudioMonitorTypeResponse struct {
 type SetAudioMonitorTypeRequest struct {
 	// Source name.
 	// Required: Yes.
-	SourceName string `json:"sourceName"`
+	SourceName string `json:"sourceName,omitempty"`
 	// The monitor type to use.
 	// Options: `none`, `monitorOnly`, `monitorAndOutput`.
 	// Required: Yes.
-	MonitorType string `json:"monitorType"`
+	MonitorType string `json:"monitorType,omitempty"`
 	_request    `json:",squash"`
 	response    chan SetAudioMonitorTypeResponse
 }
@@ -3986,7 +3986,7 @@ type GetSourceDefaultSettingsRequest struct {
 	// Source kind.
 	// Also called "source id" in libobs terminology.
 	// Required: Yes.
-	SourceKind string `json:"sourceKind"`
+	SourceKind string `json:"sourceKind,omitempty"`
 	_request   `json:",squash"`
 	response   chan GetSourceDefaultSettingsResponse
 }
@@ -4069,10 +4069,10 @@ type GetSourceDefaultSettingsResponse struct {
 	// Source kind.
 	// Same value as the `sourceKind` parameter.
 	// Required: Yes.
-	SourceKind string `json:"sourceKind"`
+	SourceKind string `json:"sourceKind,omitempty"`
 	// Settings object for source.
 	// Required: Yes.
-	DefaultSettings map[string]interface{} `json:"defaultSettings"`
+	DefaultSettings map[string]interface{} `json:"defaultSettings,omitempty"`
 	_response       `json:",squash"`
 }
 
@@ -4092,33 +4092,33 @@ type TakeSourceScreenshotRequest struct {
 	// Note: Since scenes are also sources, you can also provide a scene name.
 	// If not provided, the currently active scene is used.
 	// Required: No.
-	SourceName string `json:"sourceName"`
+	SourceName string `json:"sourceName,omitempty"`
 	// Format of the Data URI encoded picture.
 	// Can be "png", "jpg", "jpeg" or "bmp" (or any other value supported by Qt's Image module).
 	// Required: No.
-	EmbedPictureFormat string `json:"embedPictureFormat"`
+	EmbedPictureFormat string `json:"embedPictureFormat,omitempty"`
 	// Full file path (file extension included) where the captured image is to be saved.
 	// Can be in a format different from `pictureFormat`.
 	// Can be a relative path.
 	// Required: No.
-	SaveToFilePath string `json:"saveToFilePath"`
+	SaveToFilePath string `json:"saveToFilePath,omitempty"`
 	// Format to save the image file as (one of the values provided in the `supported-image-export-formats` response field of `GetVersion`).
 	// If not specified, tries to guess based on file extension.
 	// Required: No.
-	FileFormat string `json:"fileFormat"`
+	FileFormat string `json:"fileFormat,omitempty"`
 	// Compression ratio between -1 and 100 to write the image with.
 	// -1 is automatic, 1 is smallest file/most compression, 100 is largest file/least compression.
 	// Varies with image type.
 	// Required: No.
-	CompressionQuality int `json:"compressionQuality"`
+	CompressionQuality int `json:"compressionQuality,omitempty"`
 	// Screenshot width.
 	// Defaults to the source's base width.
 	// Required: No.
-	Width int `json:"width"`
+	Width int `json:"width,omitempty"`
 	// Screenshot height.
 	// Defaults to the source's base height.
 	// Required: No.
-	Height   int `json:"height"`
+	Height   int `json:"height,omitempty"`
 	_request `json:",squash"`
 	response chan TakeSourceScreenshotResponse
 }
@@ -4214,13 +4214,13 @@ func (r TakeSourceScreenshotRequest) SendReceive(c Client) (TakeSourceScreenshot
 type TakeSourceScreenshotResponse struct {
 	// Source name.
 	// Required: Yes.
-	SourceName string `json:"sourceName"`
+	SourceName string `json:"sourceName,omitempty"`
 	// Image Data URI (if `embedPictureFormat` was specified in the request).
 	// Required: Yes.
-	Img string `json:"img"`
+	Img string `json:"img,omitempty"`
 	// Absolute path to the saved image file (if `saveToFilePath` was specified in the request).
 	// Required: Yes.
-	ImageFile string `json:"imageFile"`
+	ImageFile string `json:"imageFile,omitempty"`
 	_response `json:",squash"`
 }
 
@@ -4232,7 +4232,7 @@ type TakeSourceScreenshotResponse struct {
 type RefreshBrowserSourceRequest struct {
 	// Source name.
 	// Required: Yes.
-	SourceName string `json:"sourceName"`
+	SourceName string `json:"sourceName,omitempty"`
 	_request   `json:",squash"`
 	response   chan RefreshBrowserSourceResponse
 }

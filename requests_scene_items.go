@@ -17,7 +17,7 @@ type GetSceneItemListRequest struct {
 	// Name of the scene to get the list of scene items from.
 	// Defaults to the current scene if not specified.
 	// Required: No.
-	SceneName string `json:"sceneName"`
+	SceneName string `json:"sceneName,omitempty"`
 	_request  `json:",squash"`
 	response  chan GetSceneItemListResponse
 }
@@ -99,24 +99,24 @@ func (r GetSceneItemListRequest) SendReceive(c Client) (GetSceneItemListResponse
 type GetSceneItemListResponse struct {
 	// Name of the requested (or current) scene.
 	// Required: Yes.
-	SceneName string `json:"sceneName"`
+	SceneName string `json:"sceneName,omitempty"`
 	// Array of scene items.
 	// Required: Yes.
-	SceneItems []map[string]interface{} `json:"sceneItems"`
+	SceneItems []map[string]interface{} `json:"sceneItems,omitempty"`
 	// Unique item id of the source item.
 	// Required: Yes.
-	SceneItemsItemID int `json:"sceneItems.*.itemId"`
+	SceneItemsItemID int `json:"sceneItems.*.itemId,omitempty"`
 	// ID if the scene item's source.
 	// For example `vlc_source` or `image_source`.
 	// Required: Yes.
-	SceneItemsSourceKind string `json:"sceneItems.*.sourceKind"`
+	SceneItemsSourceKind string `json:"sceneItems.*.sourceKind,omitempty"`
 	// Name of the scene item's source.
 	// Required: Yes.
-	SceneItemsSourceName string `json:"sceneItems.*.sourceName"`
+	SceneItemsSourceName string `json:"sceneItems.*.sourceName,omitempty"`
 	// Type of the scene item's source.
 	// Either `input`, `group`, or `scene`.
 	// Required: Yes.
-	SceneItemsSourceType string `json:"sceneItems.*.sourceType"`
+	SceneItemsSourceType string `json:"sceneItems.*.sourceType,omitempty"`
 	_response            `json:",squash"`
 }
 
@@ -130,16 +130,16 @@ type GetSceneItemPropertiesRequest struct {
 	// Name of the scene the scene item belongs to.
 	// Defaults to the current scene.
 	// Required: No.
-	SceneName string `json:"scene-name"`
+	SceneName string `json:"scene-name,omitempty"`
 	// Scene Item name (if this field is a string) or specification (if it is an object).
 	// Required: Yes.
-	Item interface{} `json:"item"`
+	Item interface{} `json:"item,omitempty"`
 	// Scene Item name (if the `item` field is an object).
 	// Required: No.
-	ItemName string `json:"item.name"`
+	ItemName string `json:"item.name,omitempty"`
 	// Scene Item ID (if the `item` field is an object).
 	// Required: No.
-	ItemID   int `json:"item.id"`
+	ItemID   int `json:"item.id,omitempty"`
 	_request `json:",squash"`
 	response chan GetSceneItemPropertiesResponse
 }
@@ -229,85 +229,85 @@ func (r GetSceneItemPropertiesRequest) SendReceive(c Client) (GetSceneItemProper
 type GetSceneItemPropertiesResponse struct {
 	// Scene Item name.
 	// Required: Yes.
-	Name string `json:"name"`
+	Name string `json:"name,omitempty"`
 	// Scene Item ID.
 	// Required: Yes.
-	ItemID int `json:"itemId"`
+	ItemID int `json:"itemId,omitempty"`
 	// The x position of the source from the left.
 	// Required: Yes.
-	PositionX float64 `json:"position.x"`
+	PositionX float64 `json:"position.x,omitempty"`
 	// The y position of the source from the top.
 	// Required: Yes.
-	PositionY float64 `json:"position.y"`
+	PositionY float64 `json:"position.y,omitempty"`
 	// The point on the source that the item is manipulated from.
 	// The sum of 1=Left or 2=Right, and 4=Top or 8=Bottom, or omit to center on that axis.
 	// Required: Yes.
-	PositionAlignment int `json:"position.alignment"`
+	PositionAlignment int `json:"position.alignment,omitempty"`
 	// The clockwise rotation of the item in degrees around the point of alignment.
 	// Required: Yes.
-	Rotation float64 `json:"rotation"`
+	Rotation float64 `json:"rotation,omitempty"`
 	// The x-scale factor of the source.
 	// Required: Yes.
-	ScaleX float64 `json:"scale.x"`
+	ScaleX float64 `json:"scale.x,omitempty"`
 	// The y-scale factor of the source.
 	// Required: Yes.
-	ScaleY float64 `json:"scale.y"`
+	ScaleY float64 `json:"scale.y,omitempty"`
 	// The scale filter of the source.
 	// Can be "OBS_SCALE_DISABLE", "OBS_SCALE_POINT", "OBS_SCALE_BICUBIC", "OBS_SCALE_BILINEAR", "OBS_SCALE_LANCZOS" or "OBS_SCALE_AREA".
 	// Required: Yes.
-	ScaleFilter string `json:"scale.filter"`
+	ScaleFilter string `json:"scale.filter,omitempty"`
 	// The number of pixels cropped off the top of the source before scaling.
 	// Required: Yes.
-	CropTop int `json:"crop.top"`
+	CropTop int `json:"crop.top,omitempty"`
 	// The number of pixels cropped off the right of the source before scaling.
 	// Required: Yes.
-	CropRight int `json:"crop.right"`
+	CropRight int `json:"crop.right,omitempty"`
 	// The number of pixels cropped off the bottom of the source before scaling.
 	// Required: Yes.
-	CropBottom int `json:"crop.bottom"`
+	CropBottom int `json:"crop.bottom,omitempty"`
 	// The number of pixels cropped off the left of the source before scaling.
 	// Required: Yes.
-	CropLeft int `json:"crop.left"`
+	CropLeft int `json:"crop.left,omitempty"`
 	// If the source is visible.
 	// Required: Yes.
-	Visible bool `json:"visible"`
+	Visible bool `json:"visible,omitempty"`
 	// If the source is muted.
 	// Required: Yes.
-	Muted bool `json:"muted"`
+	Muted bool `json:"muted,omitempty"`
 	// If the source's transform is locked.
 	// Required: Yes.
-	Locked bool `json:"locked"`
+	Locked bool `json:"locked,omitempty"`
 	// Type of bounding box.
 	// Can be "OBS_BOUNDS_STRETCH", "OBS_BOUNDS_SCALE_INNER", "OBS_BOUNDS_SCALE_OUTER", "OBS_BOUNDS_SCALE_TO_WIDTH", "OBS_BOUNDS_SCALE_TO_HEIGHT", "OBS_BOUNDS_MAX_ONLY" or "OBS_BOUNDS_NONE".
 	// Required: Yes.
-	BoundsType string `json:"bounds.type"`
+	BoundsType string `json:"bounds.type,omitempty"`
 	// Alignment of the bounding box.
 	// Required: Yes.
-	BoundsAlignment int `json:"bounds.alignment"`
+	BoundsAlignment int `json:"bounds.alignment,omitempty"`
 	// Width of the bounding box.
 	// Required: Yes.
-	BoundsX float64 `json:"bounds.x"`
+	BoundsX float64 `json:"bounds.x,omitempty"`
 	// Height of the bounding box.
 	// Required: Yes.
-	BoundsY float64 `json:"bounds.y"`
+	BoundsY float64 `json:"bounds.y,omitempty"`
 	// Base width (without scaling) of the source.
 	// Required: Yes.
-	SourceWidth int `json:"sourceWidth"`
+	SourceWidth int `json:"sourceWidth,omitempty"`
 	// Base source (without scaling) of the source.
 	// Required: Yes.
-	SourceHeight int `json:"sourceHeight"`
+	SourceHeight int `json:"sourceHeight,omitempty"`
 	// Scene item width (base source width multiplied by the horizontal scaling factor).
 	// Required: Yes.
-	Width float64 `json:"width"`
+	Width float64 `json:"width,omitempty"`
 	// Scene item height (base source height multiplied by the vertical scaling factor).
 	// Required: Yes.
-	Height float64 `json:"height"`
+	Height float64 `json:"height,omitempty"`
 	// Name of the item's parent (if this item belongs to a group).
 	// Required: No.
-	ParentGroupName string `json:"parentGroupName"`
+	ParentGroupName string `json:"parentGroupName,omitempty"`
 	// List of children (if this item is a group).
 	// Required: No.
-	GroupChildren []*SceneItemTransform `json:"groupChildren"`
+	GroupChildren []*SceneItemTransform `json:"groupChildren,omitempty"`
 	_response     `json:",squash"`
 }
 
@@ -322,72 +322,72 @@ type SetSceneItemPropertiesRequest struct {
 	// Name of the scene the source item belongs to.
 	// Defaults to the current scene.
 	// Required: No.
-	SceneName string `json:"scene-name"`
+	SceneName string `json:"scene-name,omitempty"`
 	// Scene Item name (if this field is a string) or specification (if it is an object).
 	// Required: Yes.
-	Item interface{} `json:"item"`
+	Item interface{} `json:"item,omitempty"`
 	// Scene Item name (if the `item` field is an object).
 	// Required: No.
-	ItemName string `json:"item.name"`
+	ItemName string `json:"item.name,omitempty"`
 	// Scene Item ID (if the `item` field is an object).
 	// Required: No.
-	ItemID int `json:"item.id"`
+	ItemID int `json:"item.id,omitempty"`
 	// The new x position of the source.
 	// Required: No.
-	PositionX float64 `json:"position.x"`
+	PositionX float64 `json:"position.x,omitempty"`
 	// The new y position of the source.
 	// Required: No.
-	PositionY float64 `json:"position.y"`
+	PositionY float64 `json:"position.y,omitempty"`
 	// The new alignment of the source.
 	// Required: No.
-	PositionAlignment int `json:"position.alignment"`
+	PositionAlignment int `json:"position.alignment,omitempty"`
 	// The new clockwise rotation of the item in degrees.
 	// Required: No.
-	Rotation float64 `json:"rotation"`
+	Rotation float64 `json:"rotation,omitempty"`
 	// The new x scale of the item.
 	// Required: No.
-	ScaleX float64 `json:"scale.x"`
+	ScaleX float64 `json:"scale.x,omitempty"`
 	// The new y scale of the item.
 	// Required: No.
-	ScaleY float64 `json:"scale.y"`
+	ScaleY float64 `json:"scale.y,omitempty"`
 	// The new scale filter of the source.
 	// Can be "OBS_SCALE_DISABLE", "OBS_SCALE_POINT", "OBS_SCALE_BICUBIC", "OBS_SCALE_BILINEAR", "OBS_SCALE_LANCZOS" or "OBS_SCALE_AREA".
 	// Required: No.
-	ScaleFilter string `json:"scale.filter"`
+	ScaleFilter string `json:"scale.filter,omitempty"`
 	// The new amount of pixels cropped off the top of the source before scaling.
 	// Required: No.
-	CropTop int `json:"crop.top"`
+	CropTop int `json:"crop.top,omitempty"`
 	// The new amount of pixels cropped off the bottom of the source before scaling.
 	// Required: No.
-	CropBottom int `json:"crop.bottom"`
+	CropBottom int `json:"crop.bottom,omitempty"`
 	// The new amount of pixels cropped off the left of the source before scaling.
 	// Required: No.
-	CropLeft int `json:"crop.left"`
+	CropLeft int `json:"crop.left,omitempty"`
 	// The new amount of pixels cropped off the right of the source before scaling.
 	// Required: No.
-	CropRight int `json:"crop.right"`
+	CropRight int `json:"crop.right,omitempty"`
 	// The new visibility of the source.
 	// 'true' shows source, 'false' hides source.
 	// Required: No.
-	Visible bool `json:"visible"`
+	Visible bool `json:"visible,omitempty"`
 	// The new locked status of the source.
 	// 'true' keeps it in its current position, 'false' allows movement.
 	// Required: No.
-	Locked bool `json:"locked"`
+	Locked bool `json:"locked,omitempty"`
 	// The new bounds type of the source.
 	// Can be "OBS_BOUNDS_STRETCH", "OBS_BOUNDS_SCALE_INNER", "OBS_BOUNDS_SCALE_OUTER", "OBS_BOUNDS_SCALE_TO_WIDTH", "OBS_BOUNDS_SCALE_TO_HEIGHT", "OBS_BOUNDS_MAX_ONLY" or "OBS_BOUNDS_NONE".
 	// Required: No.
-	BoundsType string `json:"bounds.type"`
+	BoundsType string `json:"bounds.type,omitempty"`
 	// The new alignment of the bounding box.
 	// (0-2, 4-6, 8-10).
 	// Required: No.
-	BoundsAlignment int `json:"bounds.alignment"`
+	BoundsAlignment int `json:"bounds.alignment,omitempty"`
 	// The new width of the bounding box.
 	// Required: No.
-	BoundsX float64 `json:"bounds.x"`
+	BoundsX float64 `json:"bounds.x,omitempty"`
 	// The new height of the bounding box.
 	// Required: No.
-	BoundsY  float64 `json:"bounds.y"`
+	BoundsY  float64 `json:"bounds.y,omitempty"`
 	_request `json:",squash"`
 	response chan SetSceneItemPropertiesResponse
 }
@@ -521,16 +521,16 @@ type ResetSceneItemRequest struct {
 	// Name of the scene the scene item belongs to.
 	// Defaults to the current scene.
 	// Required: No.
-	SceneName string `json:"scene-name"`
+	SceneName string `json:"scene-name,omitempty"`
 	// Scene Item name (if this field is a string) or specification (if it is an object).
 	// Required: Yes.
-	Item interface{} `json:"item"`
+	Item interface{} `json:"item,omitempty"`
 	// Scene Item name (if the `item` field is an object).
 	// Required: No.
-	ItemName string `json:"item.name"`
+	ItemName string `json:"item.name,omitempty"`
 	// Scene Item ID (if the `item` field is an object).
 	// Required: No.
-	ItemID   int `json:"item.id"`
+	ItemID   int `json:"item.id,omitempty"`
 	_request `json:",squash"`
 	response chan ResetSceneItemResponse
 }
@@ -630,16 +630,16 @@ type SetSceneItemRenderRequest struct {
 	// Name of the scene the scene item belongs to.
 	// Defaults to the currently active scene.
 	// Required: No.
-	SceneName string `json:"scene-name"`
+	SceneName string `json:"scene-name,omitempty"`
 	// Scene Item name.
 	// Required: No.
-	Source string `json:"source"`
+	Source string `json:"source,omitempty"`
 	// Scene Item id.
 	// Required: No.
-	Item int `json:"item"`
+	Item int `json:"item,omitempty"`
 	// true = shown ; false = hidden.
 	// Required: Yes.
-	Render   bool `json:"render"`
+	Render   bool `json:"render,omitempty"`
 	_request `json:",squash"`
 	response chan SetSceneItemRenderResponse
 }
@@ -739,16 +739,16 @@ type SetSceneItemPositionRequest struct {
 	// Name of the scene the scene item belongs to.
 	// Defaults to the current scene.
 	// Required: No.
-	SceneName string `json:"scene-name"`
+	SceneName string `json:"scene-name,omitempty"`
 	// Scene Item name.
 	// Required: Yes.
-	Item string `json:"item"`
+	Item string `json:"item,omitempty"`
 	// X coordinate.
 	// Required: Yes.
-	X float64 `json:"x"`
+	X float64 `json:"x,omitempty"`
 	// Y coordinate.
 	// Required: Yes.
-	Y        float64 `json:"y"`
+	Y        float64 `json:"y,omitempty"`
 	_request `json:",squash"`
 	response chan SetSceneItemPositionResponse
 }
@@ -848,19 +848,19 @@ type SetSceneItemTransformRequest struct {
 	// Name of the scene the scene item belongs to.
 	// Defaults to the current scene.
 	// Required: No.
-	SceneName string `json:"scene-name"`
+	SceneName string `json:"scene-name,omitempty"`
 	// Scene Item name.
 	// Required: Yes.
-	Item string `json:"item"`
+	Item string `json:"item,omitempty"`
 	// Width scale factor.
 	// Required: Yes.
-	XScale float64 `json:"x-scale"`
+	XScale float64 `json:"x-scale,omitempty"`
 	// Height scale factor.
 	// Required: Yes.
-	YScale float64 `json:"y-scale"`
+	YScale float64 `json:"y-scale,omitempty"`
 	// Source item rotation (in degrees).
 	// Required: Yes.
-	Rotation float64 `json:"rotation"`
+	Rotation float64 `json:"rotation,omitempty"`
 	_request `json:",squash"`
 	response chan SetSceneItemTransformResponse
 }
@@ -962,22 +962,22 @@ type SetSceneItemCropRequest struct {
 	// Name of the scene the scene item belongs to.
 	// Defaults to the current scene.
 	// Required: No.
-	SceneName string `json:"scene-name"`
+	SceneName string `json:"scene-name,omitempty"`
 	// Scene Item name.
 	// Required: Yes.
-	Item string `json:"item"`
+	Item string `json:"item,omitempty"`
 	// Pixel position of the top of the source item.
 	// Required: Yes.
-	Top int `json:"top"`
+	Top int `json:"top,omitempty"`
 	// Pixel position of the bottom of the source item.
 	// Required: Yes.
-	Bottom int `json:"bottom"`
+	Bottom int `json:"bottom,omitempty"`
 	// Pixel position of the left of the source item.
 	// Required: Yes.
-	Left int `json:"left"`
+	Left int `json:"left,omitempty"`
 	// Pixel position of the right of the source item.
 	// Required: Yes.
-	Right    int `json:"right"`
+	Right    int `json:"right,omitempty"`
 	_request `json:",squash"`
 	response chan SetSceneItemCropResponse
 }
@@ -1081,16 +1081,16 @@ type DeleteSceneItemRequest struct {
 	// Name of the scene the scene item belongs to.
 	// Defaults to the current scene.
 	// Required: No.
-	Scene string `json:"scene"`
+	Scene string `json:"scene,omitempty"`
 	// Scene item to delete (required).
 	// Required: Yes.
-	Item map[string]interface{} `json:"item"`
+	Item map[string]interface{} `json:"item,omitempty"`
 	// Scene Item name (prefer `id`, including both is acceptable).
 	// Required: Yes.
-	ItemName string `json:"item.name"`
+	ItemName string `json:"item.name,omitempty"`
 	// Scene Item ID.
 	// Required: Yes.
-	ItemID   int `json:"item.id"`
+	ItemID   int `json:"item.id,omitempty"`
 	_request `json:",squash"`
 	response chan DeleteSceneItemResponse
 }
@@ -1190,14 +1190,14 @@ type DeleteSceneItemResponse struct {
 type AddSceneItemRequest struct {
 	// Name of the scene to create the scene item in.
 	// Required: Yes.
-	SceneName string `json:"sceneName"`
+	SceneName string `json:"sceneName,omitempty"`
 	// Name of the source to be added.
 	// Required: Yes.
-	SourceName string `json:"sourceName"`
+	SourceName string `json:"sourceName,omitempty"`
 	// Whether to make the sceneitem visible on creation or not.
 	// Default `true`.
 	// Required: No.
-	SetVisible bool `json:"setVisible"`
+	SetVisible bool `json:"setVisible,omitempty"`
 	_request   `json:",squash"`
 	response   chan AddSceneItemResponse
 }
@@ -1285,7 +1285,7 @@ func (r AddSceneItemRequest) SendReceive(c Client) (AddSceneItemResponse, error)
 type AddSceneItemResponse struct {
 	// Numerical ID of the created scene item.
 	// Required: Yes.
-	ItemID    int `json:"itemId"`
+	ItemID    int `json:"itemId,omitempty"`
 	_response `json:",squash"`
 }
 
@@ -1298,20 +1298,20 @@ type DuplicateSceneItemRequest struct {
 	// Name of the scene to copy the item from.
 	// Defaults to the current scene.
 	// Required: No.
-	FromScene string `json:"fromScene"`
+	FromScene string `json:"fromScene,omitempty"`
 	// Name of the scene to create the item in.
 	// Defaults to the current scene.
 	// Required: No.
-	ToScene string `json:"toScene"`
+	ToScene string `json:"toScene,omitempty"`
 	// Scene Item to duplicate from the source scene (required).
 	// Required: Yes.
-	Item map[string]interface{} `json:"item"`
+	Item map[string]interface{} `json:"item,omitempty"`
 	// Scene Item name (prefer `id`, including both is acceptable).
 	// Required: Yes.
-	ItemName string `json:"item.name"`
+	ItemName string `json:"item.name,omitempty"`
 	// Scene Item ID.
 	// Required: Yes.
-	ItemID   int `json:"item.id"`
+	ItemID   int `json:"item.id,omitempty"`
 	_request `json:",squash"`
 	response chan DuplicateSceneItemResponse
 }
@@ -1403,15 +1403,15 @@ func (r DuplicateSceneItemRequest) SendReceive(c Client) (DuplicateSceneItemResp
 type DuplicateSceneItemResponse struct {
 	// Name of the scene where the new item was created.
 	// Required: Yes.
-	Scene string `json:"scene"`
+	Scene string `json:"scene,omitempty"`
 	// New item info.
 	// Required: Yes.
-	Item map[string]interface{} `json:"item"`
+	Item map[string]interface{} `json:"item,omitempty"`
 	// New item ID.
 	// Required: Yes.
-	ItemID int `json:"item.id"`
+	ItemID int `json:"item.id,omitempty"`
 	// New item name.
 	// Required: Yes.
-	ItemName  string `json:"item.name"`
+	ItemName  string `json:"item.name,omitempty"`
 	_response `json:",squash"`
 }

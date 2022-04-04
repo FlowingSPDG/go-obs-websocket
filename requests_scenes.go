@@ -16,7 +16,7 @@ import (
 type SetCurrentSceneRequest struct {
 	// Name of the scene to switch to.
 	// Required: Yes.
-	SceneName string `json:"scene-name"`
+	SceneName string `json:"scene-name,omitempty"`
 	_request  `json:",squash"`
 	response  chan SetCurrentSceneResponse
 }
@@ -185,10 +185,10 @@ func (r GetCurrentSceneRequest) SendReceive(c Client) (GetCurrentSceneResponse, 
 type GetCurrentSceneResponse struct {
 	// Name of the currently active scene.
 	// Required: Yes.
-	Name string `json:"name"`
+	Name string `json:"name,omitempty"`
 	// Ordered list of the current scene's source items.
 	// Required: Yes.
-	Sources   []*SceneItem `json:"sources"`
+	Sources   []*SceneItem `json:"sources,omitempty"`
 	_response `json:",squash"`
 }
 
@@ -278,10 +278,10 @@ func (r GetSceneListRequest) SendReceive(c Client) (GetSceneListResponse, error)
 type GetSceneListResponse struct {
 	// Name of the currently active scene.
 	// Required: Yes.
-	CurrentScene string `json:"current-scene"`
+	CurrentScene string `json:"current-scene,omitempty"`
 	// Ordered list of the current profile's scenes (See [GetCurrentScene](#getcurrentscene) for more information).
 	// Required: Yes.
-	Scenes    []*Scene `json:"scenes"`
+	Scenes    []*Scene `json:"scenes,omitempty"`
 	_response `json:",squash"`
 }
 
@@ -293,7 +293,7 @@ type GetSceneListResponse struct {
 type CreateSceneRequest struct {
 	// Name of the scene to create.
 	// Required: Yes.
-	SceneName string `json:"sceneName"`
+	SceneName string `json:"sceneName,omitempty"`
 	_request  `json:",squash"`
 	response  chan CreateSceneResponse
 }
@@ -384,19 +384,19 @@ type CreateSceneResponse struct {
 type ReorderSceneItemsRequest struct {
 	// Name of the scene to reorder (defaults to current).
 	// Required: No.
-	Scene string `json:"scene"`
+	Scene string `json:"scene,omitempty"`
 	// Ordered list of objects with name and/or id specified.
 	// Id preferred due to uniqueness per scene.
 	// Required: Yes.
-	Items []map[string]interface{} `json:"items"`
+	Items []map[string]interface{} `json:"items,omitempty"`
 	// Id of a specific scene item.
 	// Unique on a scene by scene basis.
 	// Required: No.
-	ItemsID int `json:"items.*.id"`
+	ItemsID int `json:"items.*.id,omitempty"`
 	// Name of a scene item.
 	// Sufficiently unique if no scene items share sources within the scene.
 	// Required: No.
-	ItemsName string `json:"items.*.name"`
+	ItemsName string `json:"items.*.name,omitempty"`
 	_request  `json:",squash"`
 	response  chan ReorderSceneItemsResponse
 }
@@ -495,14 +495,14 @@ type ReorderSceneItemsResponse struct {
 type SetSceneTransitionOverrideRequest struct {
 	// Name of the scene to switch to.
 	// Required: Yes.
-	SceneName string `json:"sceneName"`
+	SceneName string `json:"sceneName,omitempty"`
 	// Name of the transition to use.
 	// Required: Yes.
-	TransitionName string `json:"transitionName"`
+	TransitionName string `json:"transitionName,omitempty"`
 	// Duration in milliseconds of the transition if transition is not fixed.
 	// Defaults to the current duration specified in the UI if there is no current override and this value is not given.
 	// Required: Yes.
-	TransitionDuration int `json:"transitionDuration"`
+	TransitionDuration int `json:"transitionDuration,omitempty"`
 	_request           `json:",squash"`
 	response           chan SetSceneTransitionOverrideResponse
 }
@@ -599,7 +599,7 @@ type SetSceneTransitionOverrideResponse struct {
 type RemoveSceneTransitionOverrideRequest struct {
 	// Name of the scene to switch to.
 	// Required: Yes.
-	SceneName string `json:"sceneName"`
+	SceneName string `json:"sceneName,omitempty"`
 	_request  `json:",squash"`
 	response  chan RemoveSceneTransitionOverrideResponse
 }
@@ -690,7 +690,7 @@ type RemoveSceneTransitionOverrideResponse struct {
 type GetSceneTransitionOverrideRequest struct {
 	// Name of the scene to switch to.
 	// Required: Yes.
-	SceneName string `json:"sceneName"`
+	SceneName string `json:"sceneName,omitempty"`
 	_request  `json:",squash"`
 	response  chan GetSceneTransitionOverrideResponse
 }
@@ -773,10 +773,10 @@ type GetSceneTransitionOverrideResponse struct {
 	// Name of the current overriding transition.
 	// Empty string if no override is set.
 	// Required: Yes.
-	TransitionName string `json:"transitionName"`
+	TransitionName string `json:"transitionName,omitempty"`
 	// Transition duration.
 	// `-1` if no override is set.
 	// Required: Yes.
-	TransitionDuration int `json:"transitionDuration"`
+	TransitionDuration int `json:"transitionDuration,omitempty"`
 	_response          `json:",squash"`
 }

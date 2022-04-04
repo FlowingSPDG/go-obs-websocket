@@ -94,29 +94,29 @@ func (r GetStreamingStatusRequest) SendReceive(c Client) (GetStreamingStatusResp
 type GetStreamingStatusResponse struct {
 	// Current streaming status.
 	// Required: Yes.
-	Streaming bool `json:"streaming"`
+	Streaming bool `json:"streaming,omitempty"`
 	// Current recording status.
 	// Required: Yes.
-	Recording bool `json:"recording"`
+	Recording bool `json:"recording,omitempty"`
 	// If recording is paused.
 	// Required: Yes.
-	RecordingPaused bool `json:"recording-paused"`
+	RecordingPaused bool `json:"recording-paused,omitempty"`
 	// Current virtual cam status.
 	// Required: Yes.
-	Virtualcam bool `json:"virtualcam"`
+	Virtualcam bool `json:"virtualcam,omitempty"`
 	// Always false.
 	// Retrocompatibility with OBSRemote.
 	// Required: Yes.
-	PreviewOnly bool `json:"preview-only"`
+	PreviewOnly bool `json:"preview-only,omitempty"`
 	// Time elapsed since streaming started (only present if currently streaming).
 	// Required: No.
-	StreamTimecode string `json:"stream-timecode"`
+	StreamTimecode string `json:"stream-timecode,omitempty"`
 	// Time elapsed since recording started (only present if currently recording).
 	// Required: No.
-	RecTimecode string `json:"rec-timecode"`
+	RecTimecode string `json:"rec-timecode,omitempty"`
 	// Time elapsed since virtual cam started (only present if virtual cam currently active).
 	// Required: No.
-	VirtualcamTimecode string `json:"virtualcam-timecode"`
+	VirtualcamTimecode string `json:"virtualcam-timecode,omitempty"`
 	_response          `json:",squash"`
 }
 
@@ -217,36 +217,36 @@ type StartStreamingRequest struct {
 	// Special stream configuration.
 	// Note: these won't be saved to OBS' configuration.
 	// Required: No.
-	Stream map[string]interface{} `json:"stream"`
+	Stream map[string]interface{} `json:"stream,omitempty"`
 	// If specified ensures the type of stream matches the given type (usually 'rtmp_custom' or 'rtmp_common').
 	// If the currently configured stream type does not match the given stream type, all settings must be specified in the `settings` object or an error will occur when starting the stream.
 	// Required: No.
-	StreamType string `json:"stream.type"`
+	StreamType string `json:"stream.type,omitempty"`
 	// Adds the given object parameters as encoded query string parameters to the 'key' of the RTMP stream.
 	// Used to pass data to the RTMP service about the streaming.
 	// May be any String, Numeric, or Boolean field.
 	// Required: No.
-	StreamMetadata map[string]interface{} `json:"stream.metadata"`
+	StreamMetadata map[string]interface{} `json:"stream.metadata,omitempty"`
 	// Settings for the stream.
 	// Required: No.
-	StreamSettings map[string]interface{} `json:"stream.settings"`
+	StreamSettings map[string]interface{} `json:"stream.settings,omitempty"`
 	// The publish URL.
 	// Required: No.
-	StreamSettingsServer string `json:"stream.settings.server"`
+	StreamSettingsServer string `json:"stream.settings.server,omitempty"`
 	// The publish key of the stream.
 	// Required: No.
-	StreamSettingsKey string `json:"stream.settings.key"`
+	StreamSettingsKey string `json:"stream.settings.key,omitempty"`
 	// Indicates whether authentication should be used when connecting to the streaming server.
 	// Required: No.
-	StreamSettingsUseAuth bool `json:"stream.settings.use_auth"`
+	StreamSettingsUseAuth bool `json:"stream.settings.use_auth,omitempty"`
 	// If authentication is enabled, the username for the streaming server.
 	// Ignored if `use_auth` is not set to `true`.
 	// Required: No.
-	StreamSettingsUsername string `json:"stream.settings.username"`
+	StreamSettingsUsername string `json:"stream.settings.username,omitempty"`
 	// If authentication is enabled, the password for the streaming server.
 	// Ignored if `use_auth` is not set to `true`.
 	// Required: No.
-	StreamSettingsPassword string `json:"stream.settings.password"`
+	StreamSettingsPassword string `json:"stream.settings.password,omitempty"`
 	_request               `json:",squash"`
 	response               chan StartStreamingResponse
 }
@@ -447,28 +447,28 @@ type StopStreamingResponse struct {
 type SetStreamSettingsRequest struct {
 	// The type of streaming service configuration, usually `rtmp_custom` or `rtmp_common`.
 	// Required: Yes.
-	Type_ string `json:"type"`
+	Type_ string `json:"type,omitempty"`
 	// The actual settings of the stream.
 	// Required: Yes.
-	Settings map[string]interface{} `json:"settings"`
+	Settings map[string]interface{} `json:"settings,omitempty"`
 	// The publish URL.
 	// Required: No.
-	SettingsServer string `json:"settings.server"`
+	SettingsServer string `json:"settings.server,omitempty"`
 	// The publish key.
 	// Required: No.
-	SettingsKey string `json:"settings.key"`
+	SettingsKey string `json:"settings.key,omitempty"`
 	// Indicates whether authentication should be used when connecting to the streaming server.
 	// Required: No.
-	SettingsUseAuth bool `json:"settings.use_auth"`
+	SettingsUseAuth bool `json:"settings.use_auth,omitempty"`
 	// The username for the streaming service.
 	// Required: No.
-	SettingsUsername string `json:"settings.username"`
+	SettingsUsername string `json:"settings.username,omitempty"`
 	// The password for the streaming service.
 	// Required: No.
-	SettingsPassword string `json:"settings.password"`
+	SettingsPassword string `json:"settings.password,omitempty"`
 	// Persist the settings to disk.
 	// Required: Yes.
-	Save     bool `json:"save"`
+	Save     bool `json:"save,omitempty"`
 	_request `json:",squash"`
 	response chan SetStreamSettingsResponse
 }
@@ -654,27 +654,27 @@ type GetStreamSettingsResponse struct {
 	// The type of streaming service configuration.
 	// Possible values: 'rtmp_custom' or 'rtmp_common'.
 	// Required: Yes.
-	Type_ string `json:"type"`
+	Type_ string `json:"type,omitempty"`
 	// Stream settings object.
 	// Required: Yes.
-	Settings map[string]interface{} `json:"settings"`
+	Settings map[string]interface{} `json:"settings,omitempty"`
 	// The publish URL.
 	// Required: Yes.
-	SettingsServer string `json:"settings.server"`
+	SettingsServer string `json:"settings.server,omitempty"`
 	// The publish key of the stream.
 	// Required: Yes.
-	SettingsKey string `json:"settings.key"`
+	SettingsKey string `json:"settings.key,omitempty"`
 	// Indicates whether authentication should be used when connecting to the streaming server.
 	// Required: Yes.
-	SettingsUseAuth bool `json:"settings.use_auth"`
+	SettingsUseAuth bool `json:"settings.use_auth,omitempty"`
 	// The username to use when accessing the streaming server.
 	// Only present if `use_auth` is `true`.
 	// Required: Yes.
-	SettingsUsername string `json:"settings.username"`
+	SettingsUsername string `json:"settings.username,omitempty"`
 	// The password to use when accessing the streaming server.
 	// Only present if `use_auth` is `true`.
 	// Required: Yes.
-	SettingsPassword string `json:"settings.password"`
+	SettingsPassword string `json:"settings.password,omitempty"`
 	_response        `json:",squash"`
 }
 
@@ -773,7 +773,7 @@ type SaveStreamSettingsResponse struct {
 type SendCaptionsRequest struct {
 	// Captions text.
 	// Required: Yes.
-	Text     string `json:"text"`
+	Text     string `json:"text,omitempty"`
 	_request `json:",squash"`
 	response chan SendCaptionsResponse
 }

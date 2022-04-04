@@ -14,11 +14,11 @@ package obsws
 type MediaPlayingEvent struct {
 	// Source name.
 	// Required: Yes.
-	SourceName string `json:"sourceName"`
+	SourceName string `json:"sourceName,omitempty"`
 	// The ID type of the source (Eg.
 	// `vlc_source` or `ffmpeg_source`).
 	// Required: Yes.
-	SourceKind string `json:"sourceKind"`
+	SourceKind string `json:"sourceKind,omitempty"`
 	_event     `json:",squash"`
 }
 
@@ -33,11 +33,11 @@ type MediaPlayingEvent struct {
 type MediaPausedEvent struct {
 	// Source name.
 	// Required: Yes.
-	SourceName string `json:"sourceName"`
+	SourceName string `json:"sourceName,omitempty"`
 	// The ID type of the source (Eg.
 	// `vlc_source` or `ffmpeg_source`).
 	// Required: Yes.
-	SourceKind string `json:"sourceKind"`
+	SourceKind string `json:"sourceKind,omitempty"`
 	_event     `json:",squash"`
 }
 
@@ -52,11 +52,11 @@ type MediaPausedEvent struct {
 type MediaRestartedEvent struct {
 	// Source name.
 	// Required: Yes.
-	SourceName string `json:"sourceName"`
+	SourceName string `json:"sourceName,omitempty"`
 	// The ID type of the source (Eg.
 	// `vlc_source` or `ffmpeg_source`).
 	// Required: Yes.
-	SourceKind string `json:"sourceKind"`
+	SourceKind string `json:"sourceKind,omitempty"`
 	_event     `json:",squash"`
 }
 
@@ -71,11 +71,11 @@ type MediaRestartedEvent struct {
 type MediaStoppedEvent struct {
 	// Source name.
 	// Required: Yes.
-	SourceName string `json:"sourceName"`
+	SourceName string `json:"sourceName,omitempty"`
 	// The ID type of the source (Eg.
 	// `vlc_source` or `ffmpeg_source`).
 	// Required: Yes.
-	SourceKind string `json:"sourceKind"`
+	SourceKind string `json:"sourceKind,omitempty"`
 	_event     `json:",squash"`
 }
 
@@ -90,11 +90,11 @@ type MediaStoppedEvent struct {
 type MediaNextEvent struct {
 	// Source name.
 	// Required: Yes.
-	SourceName string `json:"sourceName"`
+	SourceName string `json:"sourceName,omitempty"`
 	// The ID type of the source (Eg.
 	// `vlc_source` or `ffmpeg_source`).
 	// Required: Yes.
-	SourceKind string `json:"sourceKind"`
+	SourceKind string `json:"sourceKind,omitempty"`
 	_event     `json:",squash"`
 }
 
@@ -109,11 +109,11 @@ type MediaNextEvent struct {
 type MediaPreviousEvent struct {
 	// Source name.
 	// Required: Yes.
-	SourceName string `json:"sourceName"`
+	SourceName string `json:"sourceName,omitempty"`
 	// The ID type of the source (Eg.
 	// `vlc_source` or `ffmpeg_source`).
 	// Required: Yes.
-	SourceKind string `json:"sourceKind"`
+	SourceKind string `json:"sourceKind,omitempty"`
 	_event     `json:",squash"`
 }
 
@@ -129,11 +129,11 @@ type MediaPreviousEvent struct {
 type MediaStartedEvent struct {
 	// Source name.
 	// Required: Yes.
-	SourceName string `json:"sourceName"`
+	SourceName string `json:"sourceName,omitempty"`
 	// The ID type of the source (Eg.
 	// `vlc_source` or `ffmpeg_source`).
 	// Required: Yes.
-	SourceKind string `json:"sourceKind"`
+	SourceKind string `json:"sourceKind,omitempty"`
 	_event     `json:",squash"`
 }
 
@@ -149,10 +149,10 @@ type MediaStartedEvent struct {
 type MediaEndedEvent struct {
 	// Source name.
 	// Required: Yes.
-	SourceName string `json:"sourceName"`
+	SourceName string `json:"sourceName,omitempty"`
 	// The ID type of the source (Eg.
 	// `vlc_source` or `ffmpeg_source`).
 	// Required: Yes.
-	SourceKind string `json:"sourceKind"`
+	SourceKind string `json:"sourceKind,omitempty"`
 	_event     `json:",squash"`
 }

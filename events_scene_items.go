@@ -11,16 +11,16 @@ package obsws
 type SourceOrderChangedEvent struct {
 	// Name of the scene where items have been reordered.
 	// Required: Yes.
-	SceneName string `json:"scene-name"`
+	SceneName string `json:"scene-name,omitempty"`
 	// Ordered list of scene items.
 	// Required: Yes.
-	SceneItems []map[string]interface{} `json:"scene-items"`
+	SceneItems []map[string]interface{} `json:"scene-items,omitempty"`
 	// Item source name.
 	// Required: Yes.
-	SceneItemsSourceName string `json:"scene-items.*.source-name"`
+	SceneItemsSourceName string `json:"scene-items.*.source-name,omitempty"`
 	// Scene item unique ID.
 	// Required: Yes.
-	SceneItemsItemID int `json:"scene-items.*.item-id"`
+	SceneItemsItemID int `json:"scene-items.*.item-id,omitempty"`
 	_event           `json:",squash"`
 }
 
@@ -32,13 +32,13 @@ type SourceOrderChangedEvent struct {
 type SceneItemAddedEvent struct {
 	// Name of the scene.
 	// Required: Yes.
-	SceneName string `json:"scene-name"`
+	SceneName string `json:"scene-name,omitempty"`
 	// Name of the item added to the scene.
 	// Required: Yes.
-	ItemName string `json:"item-name"`
+	ItemName string `json:"item-name,omitempty"`
 	// Scene item ID.
 	// Required: Yes.
-	ItemID int `json:"item-id"`
+	ItemID int `json:"item-id,omitempty"`
 	_event `json:",squash"`
 }
 
@@ -50,13 +50,13 @@ type SceneItemAddedEvent struct {
 type SceneItemRemovedEvent struct {
 	// Name of the scene.
 	// Required: Yes.
-	SceneName string `json:"scene-name"`
+	SceneName string `json:"scene-name,omitempty"`
 	// Name of the item removed from the scene.
 	// Required: Yes.
-	ItemName string `json:"item-name"`
+	ItemName string `json:"item-name,omitempty"`
 	// Scene item ID.
 	// Required: Yes.
-	ItemID int `json:"item-id"`
+	ItemID int `json:"item-id,omitempty"`
 	_event `json:",squash"`
 }
 
@@ -68,16 +68,16 @@ type SceneItemRemovedEvent struct {
 type SceneItemVisibilityChangedEvent struct {
 	// Name of the scene.
 	// Required: Yes.
-	SceneName string `json:"scene-name"`
+	SceneName string `json:"scene-name,omitempty"`
 	// Name of the item in the scene.
 	// Required: Yes.
-	ItemName string `json:"item-name"`
+	ItemName string `json:"item-name,omitempty"`
 	// Scene item ID.
 	// Required: Yes.
-	ItemID int `json:"item-id"`
+	ItemID int `json:"item-id,omitempty"`
 	// New visibility state of the item.
 	// Required: Yes.
-	ItemVisible bool `json:"item-visible"`
+	ItemVisible bool `json:"item-visible,omitempty"`
 	_event      `json:",squash"`
 }
 
@@ -89,16 +89,16 @@ type SceneItemVisibilityChangedEvent struct {
 type SceneItemLockChangedEvent struct {
 	// Name of the scene.
 	// Required: Yes.
-	SceneName string `json:"scene-name"`
+	SceneName string `json:"scene-name,omitempty"`
 	// Name of the item in the scene.
 	// Required: Yes.
-	ItemName string `json:"item-name"`
+	ItemName string `json:"item-name,omitempty"`
 	// Scene item ID.
 	// Required: Yes.
-	ItemID int `json:"item-id"`
+	ItemID int `json:"item-id,omitempty"`
 	// New locked state of the item.
 	// Required: Yes.
-	ItemLocked bool `json:"item-locked"`
+	ItemLocked bool `json:"item-locked,omitempty"`
 	_event     `json:",squash"`
 }
 
@@ -110,16 +110,16 @@ type SceneItemLockChangedEvent struct {
 type SceneItemTransformChangedEvent struct {
 	// Name of the scene.
 	// Required: Yes.
-	SceneName string `json:"scene-name"`
+	SceneName string `json:"scene-name,omitempty"`
 	// Name of the item in the scene.
 	// Required: Yes.
-	ItemName string `json:"item-name"`
+	ItemName string `json:"item-name,omitempty"`
 	// Scene item ID.
 	// Required: Yes.
-	ItemID int `json:"item-id"`
+	ItemID int `json:"item-id,omitempty"`
 	// Scene item transform properties.
 	// Required: Yes.
-	Transform *SceneItemTransform `json:"transform"`
+	Transform *SceneItemTransform `json:"transform,omitempty"`
 	_event    `json:",squash"`
 }
 
@@ -131,13 +131,13 @@ type SceneItemTransformChangedEvent struct {
 type SceneItemSelectedEvent struct {
 	// Name of the scene.
 	// Required: Yes.
-	SceneName string `json:"scene-name"`
+	SceneName string `json:"scene-name,omitempty"`
 	// Name of the item in the scene.
 	// Required: Yes.
-	ItemName string `json:"item-name"`
+	ItemName string `json:"item-name,omitempty"`
 	// Name of the item in the scene.
 	// Required: Yes.
-	ItemID int `json:"item-id"`
+	ItemID int `json:"item-id,omitempty"`
 	_event `json:",squash"`
 }
 
@@ -149,12 +149,12 @@ type SceneItemSelectedEvent struct {
 type SceneItemDeselectedEvent struct {
 	// Name of the scene.
 	// Required: Yes.
-	SceneName string `json:"scene-name"`
+	SceneName string `json:"scene-name,omitempty"`
 	// Name of the item in the scene.
 	// Required: Yes.
-	ItemName string `json:"item-name"`
+	ItemName string `json:"item-name,omitempty"`
 	// Name of the item in the scene.
 	// Required: Yes.
-	ItemID int `json:"item-id"`
+	ItemID int `json:"item-id,omitempty"`
 	_event `json:",squash"`
 }

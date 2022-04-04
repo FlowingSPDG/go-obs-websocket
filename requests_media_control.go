@@ -18,11 +18,11 @@ import (
 type PlayPauseMediaRequest struct {
 	// Source name.
 	// Required: Yes.
-	SourceName string `json:"sourceName"`
+	SourceName string `json:"sourceName,omitempty"`
 	// (optional) Whether to pause or play the source.
 	// `false` for play, `true` for pause.
 	// Required: Yes.
-	PlayPause bool `json:"playPause"`
+	PlayPause bool `json:"playPause,omitempty"`
 	_request  `json:",squash"`
 	response  chan PlayPauseMediaResponse
 }
@@ -118,7 +118,7 @@ type PlayPauseMediaResponse struct {
 type RestartMediaRequest struct {
 	// Source name.
 	// Required: Yes.
-	SourceName string `json:"sourceName"`
+	SourceName string `json:"sourceName,omitempty"`
 	_request   `json:",squash"`
 	response   chan RestartMediaResponse
 }
@@ -210,7 +210,7 @@ type RestartMediaResponse struct {
 type StopMediaRequest struct {
 	// Source name.
 	// Required: Yes.
-	SourceName string `json:"sourceName"`
+	SourceName string `json:"sourceName,omitempty"`
 	_request   `json:",squash"`
 	response   chan StopMediaResponse
 }
@@ -302,7 +302,7 @@ type StopMediaResponse struct {
 type NextMediaRequest struct {
 	// Source name.
 	// Required: Yes.
-	SourceName string `json:"sourceName"`
+	SourceName string `json:"sourceName,omitempty"`
 	_request   `json:",squash"`
 	response   chan NextMediaResponse
 }
@@ -394,7 +394,7 @@ type NextMediaResponse struct {
 type PreviousMediaRequest struct {
 	// Source name.
 	// Required: Yes.
-	SourceName string `json:"sourceName"`
+	SourceName string `json:"sourceName,omitempty"`
 	_request   `json:",squash"`
 	response   chan PreviousMediaResponse
 }
@@ -487,7 +487,7 @@ type PreviousMediaResponse struct {
 type GetMediaDurationRequest struct {
 	// Source name.
 	// Required: Yes.
-	SourceName string `json:"sourceName"`
+	SourceName string `json:"sourceName,omitempty"`
 	_request   `json:",squash"`
 	response   chan GetMediaDurationResponse
 }
@@ -569,7 +569,7 @@ func (r GetMediaDurationRequest) SendReceive(c Client) (GetMediaDurationResponse
 type GetMediaDurationResponse struct {
 	// The total length of media in milliseconds..
 	// Required: Yes.
-	MediaDuration int `json:"mediaDuration"`
+	MediaDuration int `json:"mediaDuration,omitempty"`
 	_response     `json:",squash"`
 }
 
@@ -582,7 +582,7 @@ type GetMediaDurationResponse struct {
 type GetMediaTimeRequest struct {
 	// Source name.
 	// Required: Yes.
-	SourceName string `json:"sourceName"`
+	SourceName string `json:"sourceName,omitempty"`
 	_request   `json:",squash"`
 	response   chan GetMediaTimeResponse
 }
@@ -664,7 +664,7 @@ func (r GetMediaTimeRequest) SendReceive(c Client) (GetMediaTimeResponse, error)
 type GetMediaTimeResponse struct {
 	// The time in milliseconds since the start of the media.
 	// Required: Yes.
-	Timestamp int `json:"timestamp"`
+	Timestamp int `json:"timestamp,omitempty"`
 	_response `json:",squash"`
 }
 
@@ -677,10 +677,10 @@ type GetMediaTimeResponse struct {
 type SetMediaTimeRequest struct {
 	// Source name.
 	// Required: Yes.
-	SourceName string `json:"sourceName"`
+	SourceName string `json:"sourceName,omitempty"`
 	// Milliseconds to set the timestamp to.
 	// Required: Yes.
-	Timestamp int `json:"timestamp"`
+	Timestamp int `json:"timestamp,omitempty"`
 	_request  `json:",squash"`
 	response  chan SetMediaTimeResponse
 }
@@ -778,10 +778,10 @@ type SetMediaTimeResponse struct {
 type ScrubMediaRequest struct {
 	// Source name.
 	// Required: Yes.
-	SourceName string `json:"sourceName"`
+	SourceName string `json:"sourceName,omitempty"`
 	// Millisecond offset (positive or negative) to offset the current media position.
 	// Required: Yes.
-	TimeOffset int `json:"timeOffset"`
+	TimeOffset int `json:"timeOffset,omitempty"`
 	_request   `json:",squash"`
 	response   chan ScrubMediaResponse
 }
@@ -877,7 +877,7 @@ type ScrubMediaResponse struct {
 type GetMediaStateRequest struct {
 	// Source name.
 	// Required: Yes.
-	SourceName string `json:"sourceName"`
+	SourceName string `json:"sourceName,omitempty"`
 	_request   `json:",squash"`
 	response   chan GetMediaStateResponse
 }
@@ -960,6 +960,6 @@ type GetMediaStateResponse struct {
 	// The media state of the provided source.
 	// States: `none`, `playing`, `opening`, `buffering`, `paused`, `stopped`, `ended`, `error`, `unknown`.
 	// Required: Yes.
-	MediaState string `json:"mediaState"`
+	MediaState string `json:"mediaState,omitempty"`
 	_response  `json:",squash"`
 }

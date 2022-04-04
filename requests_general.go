@@ -95,19 +95,19 @@ type GetVersionResponse struct {
 	// OBSRemote compatible API version.
 	// Fixed to 1.1 for retrocompatibility.
 	// Required: Yes.
-	Version float64 `json:"version"`
+	Version float64 `json:"version,omitempty"`
 	// obs-websocket plugin version.
 	// Required: Yes.
-	OBSWebsocketVersion string `json:"obs-websocket-version"`
+	OBSWebsocketVersion string `json:"obs-websocket-version,omitempty"`
 	// OBS Studio program version.
 	// Required: Yes.
-	OBSStudioVersion string `json:"obs-studio-version"`
+	OBSStudioVersion string `json:"obs-studio-version,omitempty"`
 	// List of available request types, formatted as a comma-separated list string (e.g. : "Method1,Method2,Method3").
 	// Required: Yes.
-	AvailableRequests string `json:"available-requests"`
+	AvailableRequests string `json:"available-requests,omitempty"`
 	// List of supported formats for features that use image export (like the TakeSourceScreenshot request type) formatted as a comma-separated list string.
 	// Required: Yes.
-	SupportedImageExportFormats string `json:"supported-image-export-formats"`
+	SupportedImageExportFormats string `json:"supported-image-export-formats,omitempty"`
 	_response                   `json:",squash"`
 }
 
@@ -199,11 +199,11 @@ func (r GetAuthRequiredRequest) SendReceive(c Client) (GetAuthRequiredResponse, 
 type GetAuthRequiredResponse struct {
 	// Indicates whether authentication is required.
 	// Required: Yes.
-	AuthRequired bool `json:"authRequired"`
+	AuthRequired bool `json:"authRequired,omitempty"`
 	// Required: No.
-	Challenge string `json:"challenge"`
+	Challenge string `json:"challenge,omitempty"`
 	// Required: No.
-	Salt      string `json:"salt"`
+	Salt      string `json:"salt,omitempty"`
 	_response `json:",squash"`
 }
 
@@ -215,7 +215,7 @@ type GetAuthRequiredResponse struct {
 type AuthenticateRequest struct {
 	// Response to the auth challenge (see "Authentication" for more information).
 	// Required: Yes.
-	Auth     string `json:"auth"`
+	Auth     string `json:"auth,omitempty"`
 	_request `json:",squash"`
 	response chan AuthenticateResponse
 }
@@ -306,7 +306,7 @@ type AuthenticateResponse struct {
 type SetHeartbeatRequest struct {
 	// Starts/Stops emitting heartbeat messages.
 	// Required: Yes.
-	Enable   bool `json:"enable"`
+	Enable   bool `json:"enable,omitempty"`
 	_request `json:",squash"`
 	response chan SetHeartbeatResponse
 }
@@ -397,7 +397,7 @@ type SetHeartbeatResponse struct {
 type SetFilenameFormattingRequest struct {
 	// Filename formatting string to set.
 	// Required: Yes.
-	FilenameFormatting string `json:"filename-formatting"`
+	FilenameFormatting string `json:"filename-formatting,omitempty"`
 	_request           `json:",squash"`
 	response           chan SetFilenameFormattingResponse
 }
@@ -566,7 +566,7 @@ func (r GetFilenameFormattingRequest) SendReceive(c Client) (GetFilenameFormatti
 type GetFilenameFormattingResponse struct {
 	// Current filename formatting string.
 	// Required: Yes.
-	FilenameFormatting string `json:"filename-formatting"`
+	FilenameFormatting string `json:"filename-formatting,omitempty"`
 	_response          `json:",squash"`
 }
 
@@ -656,7 +656,7 @@ func (r GetStatsRequest) SendReceive(c Client) (GetStatsResponse, error) {
 type GetStatsResponse struct {
 	// [OBS stats](#obsstats).
 	// Required: Yes.
-	Stats     *OBSStats `json:"stats"`
+	Stats     *OBSStats `json:"stats,omitempty"`
 	_response `json:",squash"`
 }
 
@@ -668,10 +668,10 @@ type GetStatsResponse struct {
 type BroadcastCustomMessageRequest struct {
 	// Identifier to be choosen by the client.
 	// Required: Yes.
-	Realm string `json:"realm"`
+	Realm string `json:"realm,omitempty"`
 	// User-defined data.
 	// Required: Yes.
-	Data     map[string]interface{} `json:"data"`
+	Data     map[string]interface{} `json:"data,omitempty"`
 	_request `json:",squash"`
 	response chan BroadcastCustomMessageResponse
 }
@@ -844,31 +844,31 @@ func (r GetVideoInfoRequest) SendReceive(c Client) (GetVideoInfoResponse, error)
 type GetVideoInfoResponse struct {
 	// Base (canvas) width.
 	// Required: Yes.
-	BaseWidth int `json:"baseWidth"`
+	BaseWidth int `json:"baseWidth,omitempty"`
 	// Base (canvas) height.
 	// Required: Yes.
-	BaseHeight int `json:"baseHeight"`
+	BaseHeight int `json:"baseHeight,omitempty"`
 	// Output width.
 	// Required: Yes.
-	OutputWidth int `json:"outputWidth"`
+	OutputWidth int `json:"outputWidth,omitempty"`
 	// Output height.
 	// Required: Yes.
-	OutputHeight int `json:"outputHeight"`
+	OutputHeight int `json:"outputHeight,omitempty"`
 	// Scaling method used if output size differs from base size.
 	// Required: Yes.
-	ScaleType string `json:"scaleType"`
+	ScaleType string `json:"scaleType,omitempty"`
 	// Frames rendered per second.
 	// Required: Yes.
-	FPS float64 `json:"fps"`
+	FPS float64 `json:"fps,omitempty"`
 	// Video color format.
 	// Required: Yes.
-	VideoFormat string `json:"videoFormat"`
+	VideoFormat string `json:"videoFormat,omitempty"`
 	// Color space for YUV.
 	// Required: Yes.
-	ColorSpace string `json:"colorSpace"`
+	ColorSpace string `json:"colorSpace,omitempty"`
 	// Color range (full or partial).
 	// Required: Yes.
-	ColorRange string `json:"colorRange"`
+	ColorRange string `json:"colorRange,omitempty"`
 	_response  `json:",squash"`
 }
 
@@ -881,19 +881,19 @@ type GetVideoInfoResponse struct {
 type OpenProjectorRequest struct {
 	// Type of projector: `Preview` (default), `Source`, `Scene`, `StudioProgram`, or `Multiview` (case insensitive).
 	// Required: Yes.
-	Type_ string `json:"type"`
+	Type_ string `json:"type,omitempty"`
 	// Monitor to open the projector on.
 	// If -1 or omitted, opens a window.
 	// Required: Yes.
-	Monitor int `json:"monitor"`
+	Monitor int `json:"monitor,omitempty"`
 	// Size and position of the projector window (only if monitor is -1).
 	// Encoded in Base64 using [Qt's geometry encoding](https://doc.qt.io/qt-5/qwidget.html#saveGeometry).
 	// Corresponds to OBS's saved projectors.
 	// Required: Yes.
-	Geometry string `json:"geometry"`
+	Geometry string `json:"geometry,omitempty"`
 	// Name of the source or scene to be displayed (ignored for other projector types).
 	// Required: Yes.
-	Name     string `json:"name"`
+	Name     string `json:"name,omitempty"`
 	_request `json:",squash"`
 	response chan OpenProjectorResponse
 }
@@ -992,7 +992,7 @@ type OpenProjectorResponse struct {
 type TriggerHotkeyByNameRequest struct {
 	// Unique name of the hotkey, as defined when registering the hotkey (e.g. "ReplayBuffer.Save").
 	// Required: Yes.
-	HotkeyName string `json:"hotkeyName"`
+	HotkeyName string `json:"hotkeyName,omitempty"`
 	_request   `json:",squash"`
 	response   chan TriggerHotkeyByNameResponse
 }
@@ -1085,23 +1085,23 @@ type TriggerHotkeyBySequenceRequest struct {
 	// Main key identifier (e.g. `OBS_KEY_A` for key "A").
 	// Available identifiers [here](https://github.com/obsproject/obs-studio/blob/master/libobs/obs-hotkeys.h).
 	// Required: Yes.
-	KeyID string `json:"keyId"`
+	KeyID string `json:"keyId,omitempty"`
 	// Optional key modifiers object.
 	// False entries can be ommitted.
 	// Required: Yes.
-	KeyModifiers map[string]interface{} `json:"keyModifiers"`
+	KeyModifiers map[string]interface{} `json:"keyModifiers,omitempty"`
 	// Trigger Shift Key.
 	// Required: Yes.
-	KeyModifiersShift bool `json:"keyModifiers.shift"`
+	KeyModifiersShift bool `json:"keyModifiers.shift,omitempty"`
 	// Trigger Alt Key.
 	// Required: Yes.
-	KeyModifiersAlt bool `json:"keyModifiers.alt"`
+	KeyModifiersAlt bool `json:"keyModifiers.alt,omitempty"`
 	// Trigger Control (Ctrl) Key.
 	// Required: Yes.
-	KeyModifiersControl bool `json:"keyModifiers.control"`
+	KeyModifiersControl bool `json:"keyModifiers.control,omitempty"`
 	// Trigger Command Key (Mac).
 	// Required: Yes.
-	KeyModifiersCommand bool `json:"keyModifiers.command"`
+	KeyModifiersCommand bool `json:"keyModifiers.command,omitempty"`
 	_request            `json:",squash"`
 	response            chan TriggerHotkeyBySequenceResponse
 }
@@ -1205,20 +1205,20 @@ type ExecuteBatchRequest struct {
 	// Array of requests to perform.
 	// Executed in order.
 	// Required: Yes.
-	Requests []map[string]interface{} `json:"requests"`
+	Requests []map[string]interface{} `json:"requests,omitempty"`
 	// Request type.
 	// Eg.
 	// `GetVersion`.
 	// Required: Yes.
-	RequestsRequestType string `json:"requests.*.request-type"`
+	RequestsRequestType string `json:"requests.*.request-type,omitempty"`
 	// ID of the individual request.
 	// Can be any string and not required to be unique.
 	// Defaults to empty string if not specified.
 	// Required: Yes.
-	RequestsMessageID string `json:"requests.*.message-id"`
+	RequestsMessageID string `json:"requests.*.message-id,omitempty"`
 	// Stop processing batch requests if one returns a failure.
 	// Required: Yes.
-	AbortOnFail bool `json:"abortOnFail"`
+	AbortOnFail bool `json:"abortOnFail,omitempty"`
 	_request    `json:",squash"`
 	response    chan ExecuteBatchResponse
 }
@@ -1308,17 +1308,17 @@ func (r ExecuteBatchRequest) SendReceive(c Client) (ExecuteBatchResponse, error)
 type ExecuteBatchResponse struct {
 	// Batch requests results, ordered sequentially.
 	// Required: Yes.
-	Results []map[string]interface{} `json:"results"`
+	Results []map[string]interface{} `json:"results,omitempty"`
 	// ID of the individual request which was originally provided by the client.
 	// Required: Yes.
-	ResultsMessageID string `json:"results.*.message-id"`
+	ResultsMessageID string `json:"results.*.message-id,omitempty"`
 	// Status response as string.
 	// Either `ok` or `error`.
 	// Required: Yes.
-	ResultsStatus string `json:"results.*.status"`
+	ResultsStatus string `json:"results.*.status,omitempty"`
 	// Error message accompanying an `error` status.
 	// Required: Yes.
-	ResultsError string `json:"results.*.error"`
+	ResultsError string `json:"results.*.error,omitempty"`
 	_response    `json:",squash"`
 }
 
@@ -1331,7 +1331,7 @@ type ExecuteBatchResponse struct {
 type SleepRequest struct {
 	// Delay in milliseconds to wait before continuing.
 	// Required: Yes.
-	SleepMillis int `json:"sleepMillis"`
+	SleepMillis int `json:"sleepMillis,omitempty"`
 	_request    `json:",squash"`
 	response    chan SleepResponse
 }

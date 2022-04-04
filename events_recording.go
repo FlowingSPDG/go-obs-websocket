@@ -23,7 +23,7 @@ type RecordingStartingEvent struct {
 type RecordingStartedEvent struct {
 	// Absolute path to the file of the current recording.
 	// Required: Yes.
-	RecordingFilename string `json:"recordingFilename"`
+	RecordingFilename string `json:"recordingFilename,omitempty"`
 	_event            `json:",squash"`
 }
 
@@ -35,7 +35,7 @@ type RecordingStartedEvent struct {
 type RecordingStoppingEvent struct {
 	// Absolute path to the file of the current recording.
 	// Required: Yes.
-	RecordingFilename string `json:"recordingFilename"`
+	RecordingFilename string `json:"recordingFilename,omitempty"`
 	_event            `json:",squash"`
 }
 
@@ -47,7 +47,7 @@ type RecordingStoppingEvent struct {
 type RecordingStoppedEvent struct {
 	// Absolute path to the file of the current recording.
 	// Required: Yes.
-	RecordingFilename string `json:"recordingFilename"`
+	RecordingFilename string `json:"recordingFilename,omitempty"`
 	_event            `json:",squash"`
 }
 

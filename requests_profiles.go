@@ -16,7 +16,7 @@ import (
 type SetCurrentProfileRequest struct {
 	// Name of the desired profile.
 	// Required: Yes.
-	ProfileName string `json:"profile-name"`
+	ProfileName string `json:"profile-name,omitempty"`
 	_request    `json:",squash"`
 	response    chan SetCurrentProfileResponse
 }
@@ -185,7 +185,7 @@ func (r GetCurrentProfileRequest) SendReceive(c Client) (GetCurrentProfileRespon
 type GetCurrentProfileResponse struct {
 	// Name of the currently active profile.
 	// Required: Yes.
-	ProfileName string `json:"profile-name"`
+	ProfileName string `json:"profile-name,omitempty"`
 	_response   `json:",squash"`
 }
 
@@ -275,9 +275,9 @@ func (r ListProfilesRequest) SendReceive(c Client) (ListProfilesResponse, error)
 type ListProfilesResponse struct {
 	// List of available profiles.
 	// Required: Yes.
-	Profiles []map[string]interface{} `json:"profiles"`
+	Profiles []map[string]interface{} `json:"profiles,omitempty"`
 	// Filter name.
 	// Required: Yes.
-	ProfilesProfileName string `json:"profiles.*.profile-name"`
+	ProfilesProfileName string `json:"profiles.*.profile-name,omitempty"`
 	_response           `json:",squash"`
 }

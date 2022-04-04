@@ -94,16 +94,16 @@ func (r GetRecordingStatusRequest) SendReceive(c Client) (GetRecordingStatusResp
 type GetRecordingStatusResponse struct {
 	// Current recording status.
 	// Required: Yes.
-	IsRecording bool `json:"isRecording"`
+	IsRecording bool `json:"isRecording,omitempty"`
 	// Whether the recording is paused or not.
 	// Required: Yes.
-	IsRecordingPaused bool `json:"isRecordingPaused"`
+	IsRecordingPaused bool `json:"isRecordingPaused,omitempty"`
 	// Time elapsed since recording started (only present if currently recording).
 	// Required: No.
-	RecordTimecode string `json:"recordTimecode"`
+	RecordTimecode string `json:"recordTimecode,omitempty"`
 	// Absolute path to the recording file (only present if currently recording).
 	// Required: No.
-	RecordingFilename string `json:"recordingFilename"`
+	RecordingFilename string `json:"recordingFilename,omitempty"`
 	_response         `json:",squash"`
 }
 
@@ -558,7 +558,7 @@ type ResumeRecordingResponse struct {
 type SetRecordingFolderRequest struct {
 	// Path of the recording folder.
 	// Required: Yes.
-	RecFolder string `json:"rec-folder"`
+	RecFolder string `json:"rec-folder,omitempty"`
 	_request  `json:",squash"`
 	response  chan SetRecordingFolderResponse
 }
@@ -727,6 +727,6 @@ func (r GetRecordingFolderRequest) SendReceive(c Client) (GetRecordingFolderResp
 type GetRecordingFolderResponse struct {
 	// Path of the recording folder.
 	// Required: Yes.
-	RecFolder string `json:"rec-folder"`
+	RecFolder string `json:"rec-folder,omitempty"`
 	_response `json:",squash"`
 }

@@ -94,7 +94,7 @@ func (r GetReplayBufferStatusRequest) SendReceive(c Client) (GetReplayBufferStat
 type GetReplayBufferStatusResponse struct {
 	// Current recording status.
 	// Required: Yes.
-	IsReplayBufferActive bool `json:"isReplayBufferActive"`
+	IsReplayBufferActive bool `json:"isReplayBufferActive,omitempty"`
 	_response            `json:",squash"`
 }
 

@@ -94,10 +94,10 @@ func (r GetVirtualCamStatusRequest) SendReceive(c Client) (GetVirtualCamStatusRe
 type GetVirtualCamStatusResponse struct {
 	// Current virtual camera status.
 	// Required: Yes.
-	IsVirtualCam bool `json:"isVirtualCam"`
+	IsVirtualCam bool `json:"isVirtualCam,omitempty"`
 	// Time elapsed since virtual cam started (only present if virtual cam currently active).
 	// Required: No.
-	VirtualCamTimecode string `json:"virtualCamTimecode"`
+	VirtualCamTimecode string `json:"virtualCamTimecode,omitempty"`
 	_response          `json:",squash"`
 }
 

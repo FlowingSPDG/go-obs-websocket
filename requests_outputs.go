@@ -94,7 +94,7 @@ func (r ListOutputsRequest) SendReceive(c Client) (ListOutputsResponse, error) {
 type ListOutputsResponse struct {
 	// Outputs list.
 	// Required: Yes.
-	Outputs   []map[string]interface{} `json:"outputs"`
+	Outputs   []map[string]interface{} `json:"outputs,omitempty"`
 	_response `json:",squash"`
 }
 
@@ -106,7 +106,7 @@ type ListOutputsResponse struct {
 type GetOutputInfoRequest struct {
 	// Output name.
 	// Required: Yes.
-	OutputName string `json:"outputName"`
+	OutputName string `json:"outputName,omitempty"`
 	_request   `json:",squash"`
 	response   chan GetOutputInfoResponse
 }
@@ -188,7 +188,7 @@ func (r GetOutputInfoRequest) SendReceive(c Client) (GetOutputInfoResponse, erro
 type GetOutputInfoResponse struct {
 	// Output info.
 	// Required: Yes.
-	OutputInfo map[string]interface{} `json:"outputInfo"`
+	OutputInfo map[string]interface{} `json:"outputInfo,omitempty"`
 	_response  `json:",squash"`
 }
 
@@ -203,7 +203,7 @@ type GetOutputInfoResponse struct {
 type StartOutputRequest struct {
 	// Output name.
 	// Required: Yes.
-	OutputName string `json:"outputName"`
+	OutputName string `json:"outputName,omitempty"`
 	_request   `json:",squash"`
 	response   chan StartOutputResponse
 }
@@ -297,10 +297,10 @@ type StartOutputResponse struct {
 type StopOutputRequest struct {
 	// Output name.
 	// Required: Yes.
-	OutputName string `json:"outputName"`
+	OutputName string `json:"outputName,omitempty"`
 	// Force stop (default: false).
 	// Required: No.
-	Force    bool `json:"force"`
+	Force    bool `json:"force,omitempty"`
 	_request `json:",squash"`
 	response chan StopOutputResponse
 }

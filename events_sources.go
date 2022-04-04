@@ -12,17 +12,17 @@ package obsws
 type SourceCreatedEvent struct {
 	// Source name.
 	// Required: Yes.
-	SourceName string `json:"sourceName"`
+	SourceName string `json:"sourceName,omitempty"`
 	// Source type.
 	// Can be "input", "scene", "transition" or "filter".
 	// Required: Yes.
-	SourceType string `json:"sourceType"`
+	SourceType string `json:"sourceType,omitempty"`
 	// Source kind.
 	// Required: Yes.
-	SourceKind string `json:"sourceKind"`
+	SourceKind string `json:"sourceKind,omitempty"`
 	// Source settings.
 	// Required: Yes.
-	SourceSettings map[string]interface{} `json:"sourceSettings"`
+	SourceSettings map[string]interface{} `json:"sourceSettings,omitempty"`
 	_event         `json:",squash"`
 }
 
@@ -35,14 +35,14 @@ type SourceCreatedEvent struct {
 type SourceDestroyedEvent struct {
 	// Source name.
 	// Required: Yes.
-	SourceName string `json:"sourceName"`
+	SourceName string `json:"sourceName,omitempty"`
 	// Source type.
 	// Can be "input", "scene", "transition" or "filter".
 	// Required: Yes.
-	SourceType string `json:"sourceType"`
+	SourceType string `json:"sourceType,omitempty"`
 	// Source kind.
 	// Required: Yes.
-	SourceKind string `json:"sourceKind"`
+	SourceKind string `json:"sourceKind,omitempty"`
 	_event     `json:",squash"`
 }
 
@@ -54,13 +54,13 @@ type SourceDestroyedEvent struct {
 type SourceVolumeChangedEvent struct {
 	// Source name.
 	// Required: Yes.
-	SourceName string `json:"sourceName"`
+	SourceName string `json:"sourceName,omitempty"`
 	// Source volume.
 	// Required: Yes.
-	Volume float64 `json:"volume"`
+	Volume float64 `json:"volume,omitempty"`
 	// Source volume in Decibel.
 	// Required: Yes.
-	VolumeDb float64 `json:"volumeDb"`
+	VolumeDb float64 `json:"volumeDb,omitempty"`
 	_event   `json:",squash"`
 }
 
@@ -72,10 +72,10 @@ type SourceVolumeChangedEvent struct {
 type SourceMuteStateChangedEvent struct {
 	// Source name.
 	// Required: Yes.
-	SourceName string `json:"sourceName"`
+	SourceName string `json:"sourceName,omitempty"`
 	// Mute status of the source.
 	// Required: Yes.
-	Muted  bool `json:"muted"`
+	Muted  bool `json:"muted,omitempty"`
 	_event `json:",squash"`
 }
 
@@ -87,7 +87,7 @@ type SourceMuteStateChangedEvent struct {
 type SourceAudioDeactivatedEvent struct {
 	// Source name.
 	// Required: Yes.
-	SourceName string `json:"sourceName"`
+	SourceName string `json:"sourceName,omitempty"`
 	_event     `json:",squash"`
 }
 
@@ -99,7 +99,7 @@ type SourceAudioDeactivatedEvent struct {
 type SourceAudioActivatedEvent struct {
 	// Source name.
 	// Required: Yes.
-	SourceName string `json:"sourceName"`
+	SourceName string `json:"sourceName,omitempty"`
 	_event     `json:",squash"`
 }
 
@@ -111,10 +111,10 @@ type SourceAudioActivatedEvent struct {
 type SourceAudioSyncOffsetChangedEvent struct {
 	// Source name.
 	// Required: Yes.
-	SourceName string `json:"sourceName"`
+	SourceName string `json:"sourceName,omitempty"`
 	// Audio sync offset of the source (in nanoseconds).
 	// Required: Yes.
-	SyncOffset int `json:"syncOffset"`
+	SyncOffset int `json:"syncOffset,omitempty"`
 	_event     `json:",squash"`
 }
 
@@ -126,19 +126,19 @@ type SourceAudioSyncOffsetChangedEvent struct {
 type SourceAudioMixersChangedEvent struct {
 	// Source name.
 	// Required: Yes.
-	SourceName string `json:"sourceName"`
+	SourceName string `json:"sourceName,omitempty"`
 	// Routing status of the source for each audio mixer (array of 6 values).
 	// Required: Yes.
-	Mixers []map[string]interface{} `json:"mixers"`
+	Mixers []map[string]interface{} `json:"mixers,omitempty"`
 	// Mixer number.
 	// Required: Yes.
-	MixersID int `json:"mixers.*.id"`
+	MixersID int `json:"mixers.*.id,omitempty"`
 	// Routing status.
 	// Required: Yes.
-	MixersEnabled bool `json:"mixers.*.enabled"`
+	MixersEnabled bool `json:"mixers.*.enabled,omitempty"`
 	// Raw mixer flags (little-endian, one bit per mixer) as an hexadecimal value.
 	// Required: Yes.
-	HexMixersValue string `json:"hexMixersValue"`
+	HexMixersValue string `json:"hexMixersValue,omitempty"`
 	_event         `json:",squash"`
 }
 
@@ -150,13 +150,13 @@ type SourceAudioMixersChangedEvent struct {
 type SourceRenamedEvent struct {
 	// Previous source name.
 	// Required: Yes.
-	PreviousName string `json:"previousName"`
+	PreviousName string `json:"previousName,omitempty"`
 	// New source name.
 	// Required: Yes.
-	NewName string `json:"newName"`
+	NewName string `json:"newName,omitempty"`
 	// Type of source (input, scene, filter, transition).
 	// Required: Yes.
-	SourceType string `json:"sourceType"`
+	SourceType string `json:"sourceType,omitempty"`
 	_event     `json:",squash"`
 }
 
@@ -168,16 +168,16 @@ type SourceRenamedEvent struct {
 type SourceFilterAddedEvent struct {
 	// Source name.
 	// Required: Yes.
-	SourceName string `json:"sourceName"`
+	SourceName string `json:"sourceName,omitempty"`
 	// Filter name.
 	// Required: Yes.
-	FilterName string `json:"filterName"`
+	FilterName string `json:"filterName,omitempty"`
 	// Filter type.
 	// Required: Yes.
-	FilterType string `json:"filterType"`
+	FilterType string `json:"filterType,omitempty"`
 	// Filter settings.
 	// Required: Yes.
-	FilterSettings map[string]interface{} `json:"filterSettings"`
+	FilterSettings map[string]interface{} `json:"filterSettings,omitempty"`
 	_event         `json:",squash"`
 }
 
@@ -189,13 +189,13 @@ type SourceFilterAddedEvent struct {
 type SourceFilterRemovedEvent struct {
 	// Source name.
 	// Required: Yes.
-	SourceName string `json:"sourceName"`
+	SourceName string `json:"sourceName,omitempty"`
 	// Filter name.
 	// Required: Yes.
-	FilterName string `json:"filterName"`
+	FilterName string `json:"filterName,omitempty"`
 	// Filter type.
 	// Required: Yes.
-	FilterType string `json:"filterType"`
+	FilterType string `json:"filterType,omitempty"`
 	_event     `json:",squash"`
 }
 
@@ -207,13 +207,13 @@ type SourceFilterRemovedEvent struct {
 type SourceFilterVisibilityChangedEvent struct {
 	// Source name.
 	// Required: Yes.
-	SourceName string `json:"sourceName"`
+	SourceName string `json:"sourceName,omitempty"`
 	// Filter name.
 	// Required: Yes.
-	FilterName string `json:"filterName"`
+	FilterName string `json:"filterName,omitempty"`
 	// New filter state.
 	// Required: Yes.
-	FilterEnabled bool `json:"filterEnabled"`
+	FilterEnabled bool `json:"filterEnabled,omitempty"`
 	_event        `json:",squash"`
 }
 
@@ -225,18 +225,18 @@ type SourceFilterVisibilityChangedEvent struct {
 type SourceFiltersReorderedEvent struct {
 	// Source name.
 	// Required: Yes.
-	SourceName string `json:"sourceName"`
+	SourceName string `json:"sourceName,omitempty"`
 	// Ordered Filters list.
 	// Required: Yes.
-	Filters []map[string]interface{} `json:"filters"`
+	Filters []map[string]interface{} `json:"filters,omitempty"`
 	// Filter name.
 	// Required: Yes.
-	FiltersName string `json:"filters.*.name"`
+	FiltersName string `json:"filters.*.name,omitempty"`
 	// Filter type.
 	// Required: Yes.
-	FiltersType string `json:"filters.*.type"`
+	FiltersType string `json:"filters.*.type,omitempty"`
 	// Filter visibility status.
 	// Required: Yes.
-	FiltersEnabled bool `json:"filters.*.enabled"`
+	FiltersEnabled bool `json:"filters.*.enabled,omitempty"`
 	_event         `json:",squash"`
 }

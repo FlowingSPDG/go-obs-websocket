@@ -94,13 +94,13 @@ func (r GetTransitionListRequest) SendReceive(c Client) (GetTransitionListRespon
 type GetTransitionListResponse struct {
 	// Name of the currently active transition.
 	// Required: Yes.
-	CurrentTransition string `json:"current-transition"`
+	CurrentTransition string `json:"current-transition,omitempty"`
 	// List of transitions.
 	// Required: Yes.
-	Transitions []map[string]interface{} `json:"transitions"`
+	Transitions []map[string]interface{} `json:"transitions,omitempty"`
 	// Name of the transition.
 	// Required: Yes.
-	TransitionsName string `json:"transitions.*.name"`
+	TransitionsName string `json:"transitions.*.name,omitempty"`
 	_response       `json:",squash"`
 }
 
@@ -190,10 +190,10 @@ func (r GetCurrentTransitionRequest) SendReceive(c Client) (GetCurrentTransition
 type GetCurrentTransitionResponse struct {
 	// Name of the selected transition.
 	// Required: Yes.
-	Name string `json:"name"`
+	Name string `json:"name,omitempty"`
 	// Transition duration (in milliseconds) if supported by the transition.
 	// Required: No.
-	Duration  int `json:"duration"`
+	Duration  int `json:"duration,omitempty"`
 	_response `json:",squash"`
 }
 
@@ -205,7 +205,7 @@ type GetCurrentTransitionResponse struct {
 type SetCurrentTransitionRequest struct {
 	// The name of the transition.
 	// Required: Yes.
-	TransitionName string `json:"transition-name"`
+	TransitionName string `json:"transition-name,omitempty"`
 	_request       `json:",squash"`
 	response       chan SetCurrentTransitionResponse
 }
@@ -296,7 +296,7 @@ type SetCurrentTransitionResponse struct {
 type SetTransitionDurationRequest struct {
 	// Desired duration of the transition (in milliseconds).
 	// Required: Yes.
-	Duration int `json:"duration"`
+	Duration int `json:"duration,omitempty"`
 	_request `json:",squash"`
 	response chan SetTransitionDurationResponse
 }
@@ -465,7 +465,7 @@ func (r GetTransitionDurationRequest) SendReceive(c Client) (GetTransitionDurati
 type GetTransitionDurationResponse struct {
 	// Duration of the current transition (in milliseconds).
 	// Required: Yes.
-	TransitionDuration int `json:"transition-duration"`
+	TransitionDuration int `json:"transition-duration,omitempty"`
 	_response          `json:",squash"`
 }
 
@@ -557,7 +557,7 @@ type GetTransitionPositionResponse struct {
 	// This value will be between 0.0 and 1.0.
 	// Note: Transition returns 1.0 when not active.
 	// Required: Yes.
-	Position  float64 `json:"position"`
+	Position  float64 `json:"position,omitempty"`
 	_response `json:",squash"`
 }
 
@@ -569,7 +569,7 @@ type GetTransitionPositionResponse struct {
 type GetTransitionSettingsRequest struct {
 	// Transition name.
 	// Required: Yes.
-	TransitionName string `json:"transitionName"`
+	TransitionName string `json:"transitionName,omitempty"`
 	_request       `json:",squash"`
 	response       chan GetTransitionSettingsResponse
 }
@@ -651,7 +651,7 @@ func (r GetTransitionSettingsRequest) SendReceive(c Client) (GetTransitionSettin
 type GetTransitionSettingsResponse struct {
 	// Current transition settings.
 	// Required: Yes.
-	TransitionSettings map[string]interface{} `json:"transitionSettings"`
+	TransitionSettings map[string]interface{} `json:"transitionSettings,omitempty"`
 	_response          `json:",squash"`
 }
 
@@ -663,10 +663,10 @@ type GetTransitionSettingsResponse struct {
 type SetTransitionSettingsRequest struct {
 	// Transition name.
 	// Required: Yes.
-	TransitionName string `json:"transitionName"`
+	TransitionName string `json:"transitionName,omitempty"`
 	// Transition settings (they can be partial).
 	// Required: Yes.
-	TransitionSettings map[string]interface{} `json:"transitionSettings"`
+	TransitionSettings map[string]interface{} `json:"transitionSettings,omitempty"`
 	_request           `json:",squash"`
 	response           chan SetTransitionSettingsResponse
 }
@@ -752,7 +752,7 @@ func (r SetTransitionSettingsRequest) SendReceive(c Client) (SetTransitionSettin
 type SetTransitionSettingsResponse struct {
 	// Updated transition settings.
 	// Required: Yes.
-	TransitionSettings map[string]interface{} `json:"transitionSettings"`
+	TransitionSettings map[string]interface{} `json:"transitionSettings,omitempty"`
 	_response          `json:",squash"`
 }
 
@@ -855,12 +855,12 @@ type SetTBarPositionRequest struct {
 	// T-Bar position.
 	// This value must be between 0.0 and 1.0.
 	// Required: Yes.
-	Position float64 `json:"position"`
+	Position float64 `json:"position,omitempty"`
 	// Whether or not the T-Bar gets released automatically after setting its new position (like a user releasing their mouse button after moving the T-Bar).
 	// Call `ReleaseTBar` manually if you set `release` to false.
 	// Defaults to true.
 	// Required: No.
-	Release  bool `json:"release"`
+	Release  bool `json:"release,omitempty"`
 	_request `json:",squash"`
 	response chan SetTBarPositionResponse
 }

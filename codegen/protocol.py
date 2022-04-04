@@ -322,7 +322,7 @@ def go_variables(variables: List[Dict], export: bool = True) -> str:
             {
                 "name": f"{'Type_' if varname == 'Type' else varname}",
                 "type": type_map[typename.lower()],
-                "tag": f'`json:"{v["name"]}"`',
+                "tag": f'`json:"{v["name"]},omitempty"`',
                 "description": v["description"].replace("\n", " "),
                 "optional": optional,
                 "unknown": typename.lower() in unknown_types,

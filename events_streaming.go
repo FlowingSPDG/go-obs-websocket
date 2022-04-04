@@ -11,7 +11,7 @@ package obsws
 type StreamStartingEvent struct {
 	// Always false (retrocompatibility).
 	// Required: Yes.
-	PreviewOnly bool `json:"preview-only"`
+	PreviewOnly bool `json:"preview-only,omitempty"`
 	_event      `json:",squash"`
 }
 
@@ -32,7 +32,7 @@ type StreamStartedEvent struct {
 type StreamStoppingEvent struct {
 	// Always false (retrocompatibility).
 	// Required: Yes.
-	PreviewOnly bool `json:"preview-only"`
+	PreviewOnly bool `json:"preview-only,omitempty"`
 	_event      `json:",squash"`
 }
 
@@ -53,60 +53,60 @@ type StreamStoppedEvent struct {
 type StreamStatusEvent struct {
 	// Current streaming state.
 	// Required: Yes.
-	Streaming bool `json:"streaming"`
+	Streaming bool `json:"streaming,omitempty"`
 	// Current recording state.
 	// Required: Yes.
-	Recording bool `json:"recording"`
+	Recording bool `json:"recording,omitempty"`
 	// Replay Buffer status.
 	// Required: Yes.
-	ReplayBufferActive bool `json:"replay-buffer-active"`
+	ReplayBufferActive bool `json:"replay-buffer-active,omitempty"`
 	// Amount of data per second (in bytes) transmitted by the stream encoder.
 	// Required: Yes.
-	BytesPerSec int `json:"bytes-per-sec"`
+	BytesPerSec int `json:"bytes-per-sec,omitempty"`
 	// Amount of data per second (in kilobits) transmitted by the stream encoder.
 	// Required: Yes.
-	KbitsPerSec int `json:"kbits-per-sec"`
+	KbitsPerSec int `json:"kbits-per-sec,omitempty"`
 	// Percentage of dropped frames.
 	// Required: Yes.
-	Strain float64 `json:"strain"`
+	Strain float64 `json:"strain,omitempty"`
 	// Total time (in seconds) since the stream started.
 	// Required: Yes.
-	TotalStreamTime int `json:"total-stream-time"`
+	TotalStreamTime int `json:"total-stream-time,omitempty"`
 	// Total number of frames transmitted since the stream started.
 	// Required: Yes.
-	NumTotalFrames int `json:"num-total-frames"`
+	NumTotalFrames int `json:"num-total-frames,omitempty"`
 	// Number of frames dropped by the encoder since the stream started.
 	// Required: Yes.
-	NumDroppedFrames int `json:"num-dropped-frames"`
+	NumDroppedFrames int `json:"num-dropped-frames,omitempty"`
 	// Current framerate.
 	// Required: Yes.
-	FPS float64 `json:"fps"`
+	FPS float64 `json:"fps,omitempty"`
 	// Number of frames rendered.
 	// Required: Yes.
-	RenderTotalFrames int `json:"render-total-frames"`
+	RenderTotalFrames int `json:"render-total-frames,omitempty"`
 	// Number of frames missed due to rendering lag.
 	// Required: Yes.
-	RenderMissedFrames int `json:"render-missed-frames"`
+	RenderMissedFrames int `json:"render-missed-frames,omitempty"`
 	// Number of frames outputted.
 	// Required: Yes.
-	OutputTotalFrames int `json:"output-total-frames"`
+	OutputTotalFrames int `json:"output-total-frames,omitempty"`
 	// Number of frames skipped due to encoding lag.
 	// Required: Yes.
-	OutputSkippedFrames int `json:"output-skipped-frames"`
+	OutputSkippedFrames int `json:"output-skipped-frames,omitempty"`
 	// Average frame time (in milliseconds).
 	// Required: Yes.
-	AverageFrameTime float64 `json:"average-frame-time"`
+	AverageFrameTime float64 `json:"average-frame-time,omitempty"`
 	// Current CPU usage (percentage).
 	// Required: Yes.
-	CpuUsage float64 `json:"cpu-usage"`
+	CpuUsage float64 `json:"cpu-usage,omitempty"`
 	// Current RAM usage (in megabytes).
 	// Required: Yes.
-	MemoryUsage float64 `json:"memory-usage"`
+	MemoryUsage float64 `json:"memory-usage,omitempty"`
 	// Free recording disk space (in megabytes).
 	// Required: Yes.
-	FreeDiskSpace float64 `json:"free-disk-space"`
+	FreeDiskSpace float64 `json:"free-disk-space,omitempty"`
 	// Always false (retrocompatibility).
 	// Required: Yes.
-	PreviewOnly bool `json:"preview-only"`
+	PreviewOnly bool `json:"preview-only,omitempty"`
 	_event      `json:",squash"`
 }

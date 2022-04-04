@@ -16,7 +16,7 @@ import (
 type SetCurrentSceneCollectionRequest struct {
 	// Name of the desired scene collection.
 	// Required: Yes.
-	ScName   string `json:"sc-name"`
+	ScName   string `json:"sc-name,omitempty"`
 	_request `json:",squash"`
 	response chan SetCurrentSceneCollectionResponse
 }
@@ -185,7 +185,7 @@ func (r GetCurrentSceneCollectionRequest) SendReceive(c Client) (GetCurrentScene
 type GetCurrentSceneCollectionResponse struct {
 	// Name of the currently active scene collection.
 	// Required: Yes.
-	ScName    string `json:"sc-name"`
+	ScName    string `json:"sc-name,omitempty"`
 	_response `json:",squash"`
 }
 
@@ -275,6 +275,6 @@ func (r ListSceneCollectionsRequest) SendReceive(c Client) (ListSceneCollections
 type ListSceneCollectionsResponse struct {
 	// Scene collections list.
 	// Required: Yes.
-	SceneCollections []*SceneCollection `json:"scene-collections"`
+	SceneCollections []*SceneCollection `json:"scene-collections,omitempty"`
 	_response        `json:",squash"`
 }

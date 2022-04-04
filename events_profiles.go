@@ -11,7 +11,7 @@ package obsws
 type ProfileChangedEvent struct {
 	// Name of the new current profile.
 	// Required: Yes.
-	Profile string `json:"profile"`
+	Profile string `json:"profile,omitempty"`
 	_event  `json:",squash"`
 }
 
@@ -23,9 +23,9 @@ type ProfileChangedEvent struct {
 type ProfileListChangedEvent struct {
 	// Profiles list.
 	// Required: Yes.
-	Profiles []map[string]interface{} `json:"profiles"`
+	Profiles []map[string]interface{} `json:"profiles,omitempty"`
 	// Profile name.
 	// Required: Yes.
-	ProfilesName string `json:"profiles.*.name"`
+	ProfilesName string `json:"profiles.*.name,omitempty"`
 	_event       `json:",squash"`
 }
