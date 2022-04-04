@@ -639,7 +639,7 @@ type SetSceneItemRenderRequest struct {
 	Item int `json:"item,omitempty"`
 	// true = shown ; false = hidden.
 	// Required: Yes.
-	Render   bool `json:"render,omitempty"`
+	Render   bool `json:"render"`
 	_request `json:",squash"`
 	response chan SetSceneItemRenderResponse
 }
